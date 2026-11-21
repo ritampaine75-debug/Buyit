@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07070e" />
+<meta name="description" content="VAULTLY — a premium marketplace for digital products. Instant delivery, secure UPI payments, lifetime access." />
+<title>VAULTLY — Premium Digital Products</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2338bdf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2 29 9v14L16 30 3 23V9z' fill='url(%23g)'/%3E%3Cpath d='M10.5 11 16 22.5 21.5 11' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS & RESET ============ */
+:root{
+  --bg:#07070e; --bg-2:#0b0b17; --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.07);
+  --stroke:rgba(255,255,255,.09); --stroke-2:rgba(255,255,255,.14);
+  --text:#f5f5fa; --muted:#9aa0b6; --muted-2:#6f758c;
+  --v:#8b5cf6; --v-2:#a78bfa; --b:#38bdf8; --indigo:#6366f1;
+  --grad:linear-gradient(135deg,#8b5cf6 0%,#6366f1 48%,#38bdf8 100%);
+  --grad-soft:linear-gradient(135deg,rgba(139,92,246,.18),rgba(56,189,248,.10));
+  --ok:#34d399; --warn:#fbbf24; --bad:#fb7185;
+  --r-lg:24px; --r-md:18px; --r-sm:12px;
+  --shadow:0 24px 60px -24px rgba(0,0,0,.65);
+  --glow:0 0 0 1px rgba(139,92,246,.35),0 18px 50px -18px rgba(139,92,246,.55);
+  --font-display:'Sora',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:var(--font-body);color:var(--text);background:var(--bg);
+  background-image:
+    radial-gradient(900px 500px at 85% -10%,rgba(139,92,246,.16),transparent 60%),
+    radial-gradient(800px 500px at -10% 20%,rgba(56,189,248,.10),transparent 55%),
+    radial-gradient(1000px 700px at 50% 115%,rgba(99,102,241,.10),transparent 60%);
+  background-attachment:fixed;
+  min-height:100vh; overflow-x:hidden; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.15;letter-spacing:-.02em}
+p{margin:0}
+::selection{background:rgba(139,92,246,.45);color:#fff}
+:focus-visible{outline:2px solid var(--v-2);outline-offset:2px;border-radius:6px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:99px;border:2px solid var(--bg)}
+::-webkit-scrollbar-track{background:transparent}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+.container{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
+.hidden{display:none !important}
+[hidden]{display:none !important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ============ BUTTONS ============ */
+.btn{
+  --btn-h:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  height:var(--btn-h);padding:0 20px;border-radius:14px;font-weight:600;font-size:.95rem;
+  white-space:nowrap;border:1px solid transparent;transition:transform .18s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease,opacity .2s;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+.btn[disabled],.btn.is-loading{opacity:.55;pointer-events:none}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -12px rgba(99,102,241,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-primary:hover{box-shadow:0 16px 40px -12px rgba(99,102,241,.9),inset 0 1px 0 rgba(255,255,255,.3);transform:translateY(-1px)}
+.btn-ghost{background:var(--panel);border-color:var(--stroke);color:var(--text)}
+.btn-ghost:hover{background:var(--panel-2);border-color:var(--stroke-2)}
+.btn-quiet{background:transparent;color:var(--muted)}
+.btn-quiet:hover{color:var(--text);background:var(--panel)}
+.btn-danger{background:rgba(251,113,133,.12);border-color:rgba(251,113,133,.35);color:#fda4af}
+.btn-danger:hover{background:rgba(251,113,133,.2)}
+.btn-sm{--btn-h:38px;padding:0 14px;font-size:.86rem;border-radius:11px}
+.btn-lg{--btn-h:54px;padding:0 28px;font-size:1rem;border-radius:16px}
+.btn-block{width:100%}
+.btn .spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.icon-btn{width:42px;height:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--stroke);background:var(--panel);color:var(--text);transition:background .2s,border-color .2s}
+.icon-btn:hover{background:var(--panel-2);border-color:var(--stroke-2)}
+
+/* ============ HEADER ============ */
+.announce{position:relative;z-index:61;background:linear-gradient(90deg,rgba(139,92,246,.22),rgba(56,189,248,.16));border-bottom:1px solid var(--stroke);overflow:hidden}
+.announce-inner{display:flex;align-items:center;gap:10px;height:34px;font-size:.8rem;color:#dcd9f4}
+.announce .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(52,211,153,.16);flex:none}
+.announce-track{overflow:hidden;flex:1;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.announce-text{display:inline-block;white-space:nowrap;animation:marquee 26s linear infinite;padding-left:100%}
+@keyframes marquee{to{transform:translateX(-100%)}}
+.topbar{position:sticky;top:0;z-index:60;background:rgba(7,7,14,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--stroke)}
+.topbar-inner{display:flex;align-items:center;gap:18px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.22rem;letter-spacing:.12em}
+.logo svg{width:32px;height:32px;filter:drop-shadow(0 6px 16px rgba(139,92,246,.5))}
+.logo .tm{font-size:.55rem;letter-spacing:.24em;color:var(--muted-2);font-weight:600;margin-left:-4px;margin-top:8px}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:6px}
+.nav-links a{padding:9px 13px;border-radius:10px;font-size:.9rem;color:var(--muted);font-weight:500;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:var(--panel)}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search-pill{display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;border-radius:13px;background:var(--panel);border:1px solid var(--stroke);width:236px;transition:border-color .2s,width .25s,background .2s}
+.search-pill:focus-within{border-color:rgba(139,92,246,.55);background:rgba(139,92,246,.07);width:270px}
+.search-pill svg{flex:none;color:var(--muted-2)}
+.search-pill input{background:none;border:0;outline:0;width:100%;font-size:.88rem}
+.search-pill input::placeholder{color:var(--muted-2)}
+.search-pill kbd{font-size:.62rem;color:var(--muted-2);border:1px solid var(--stroke);border-radius:5px;padding:1px 5px;font-family:var(--font-body)}
+.purch-btn{position:relative}
+.purch-badge{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;border-radius:99px;background:var(--grad);font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--bg)}
+.burger{display:none}
+
+/* ============ MOBILE MENU ============ */
+.mobile-menu{position:fixed;inset:0;z-index:80;display:none}
+.mobile-menu.open{display:block}
+.mobile-menu .scrim{position:absolute;inset:0;background:rgba(4,4,10,.6);backdrop-filter:blur(4px)}
+.mobile-menu .sheet{position:absolute;top:0;bottom:0;right:0;width:min(340px,88vw);background:var(--bg-2);border-left:1px solid var(--stroke);padding:22px;display:flex;flex-direction:column;gap:8px;animation:slideIn .25s ease}
+@keyframes slideIn{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+.mobile-menu a{padding:13px 12px;border-radius:12px;font-weight:600;color:var(--muted)}
+.mobile-menu a:hover{background:var(--panel);color:var(--text)}
+.mobile-menu .mm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:64px 0 30px;overflow:hidden}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.hero::before{width:420px;height:420px;background:rgba(139,92,246,.22);top:-120px;right:8%}
+.hero::after{width:320px;height:320px;background:rgba(56,189,248,.12);bottom:-140px;left:-60px}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--v-2);background:rgba(139,92,246,.10);border:1px solid rgba(139,92,246,.3);padding:7px 13px;border-radius:99px}
+.eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--v-2);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(167,139,250,.5)}70%{box-shadow:0 0 0 9px rgba(167,139,250,0)}100%{box-shadow:0 0 0 0 rgba(167,139,250,0)}}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.9rem);font-weight:800;margin:20px 0 18px;letter-spacing:-.035em}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{color:var(--muted);font-size:1.06rem;max-width:520px;line-height:1.7}
+.hero-ctas{display:flex;gap:12px;margin:28px 0 30px;flex-wrap:wrap}
+.trust-row{display:flex;gap:22px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:.83rem;color:var(--muted)}
+.trust-item .ti{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--grad-soft);border:1px solid rgba(139,92,246,.22);color:var(--v-2);flex:none}
+.hero-art{position:relative;height:440px}
+.hero-art .ring{position:absolute;inset:8% 6%;border:1px dashed rgba(139,92,246,.22);border-radius:50%;animation:spinSlow 46s linear infinite}
+.hero-art .ring.r2{inset:20% 18%;border-color:rgba(56,189,248,.16);animation-direction:reverse;animation-duration:36s}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+.hcard{position:absolute;width:205px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(22,22,38,.96),rgba(12,12,22,.97));border:1px solid var(--stroke-2);box-shadow:var(--shadow);animation:float 7s ease-in-out infinite}
+.hcard .thumb{aspect-ratio:4/3;position:relative;overflow:hidden}
+.hcard .thumb img{width:100%;height:100%;object-fit:cover}
+.hcard .body{padding:11px 13px 13px}
+.hcard .cat{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--b)}
+.hcard .name{font-family:var(--font-display);font-weight:600;font-size:.86rem;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hcard .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.hcard .price{font-weight:700;font-size:.9rem}
+.hcard .badge-hot{font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:99px;background:rgba(52,211,153,.13);color:var(--ok);border:1px solid rgba(52,211,153,.3)}
+.hcard.c1{left:0;top:16px;transform:rotate(-6deg);z-index:3}
+.hcard.c2{right:0;top:84px;transform:rotate(5deg);z-index:2;animation-delay:-2.2s}
+.hcard.c3{left:24%;bottom:-2px;transform:rotate(2.5deg);z-index:4;animation-delay:-4.4s}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.hero-glowtag{position:absolute;right:2%;bottom:6px;font-size:.7rem;font-weight:600;color:#a5f3d0;background:rgba(16,38,32,.85);border:1px solid rgba(52,211,153,.3);padding:6px 11px;border-radius:99px;display:flex;align-items:center;gap:6px;backdrop-filter:blur(8px);z-index:5}
+.hero-glowtag svg{color:var(--ok)}
+.hero-stats{display:flex;gap:30px;margin-top:34px;padding-top:22px;border-top:1px solid var(--stroke);position:relative;z-index:2;flex-wrap:wrap}
+.hero-stats .hs b{display:block;font-family:var(--font-display);font-size:1.35rem;font-weight:700}
+.hero-stats .hs span{font-size:.78rem;color:var(--muted-2)}
+
+/* ============ SECTIONS ============ */
+.section{padding:54px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:26px}
+.section-head h2{font-size:clamp(1.45rem,2.6vw,1.95rem);font-weight:700;margin-top:8px}
+.section-head .eyebrow{font-size:.68rem;padding:5px 11px}
+.section-sub{color:var(--muted);font-size:.92rem;margin-top:7px;max-width:520px}
+.link-more{display:inline-flex;align-items:center;gap:6px;color:var(--v-2);font-weight:600;font-size:.88rem;white-space:nowrap;padding:8px 4px}
+.link-more:hover{gap:9px}
+
+/* ============ CHIPS & TOOLBAR ============ */
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;flex:1;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chip{height:38px;padding:0 15px;border-radius:11px;border:1px solid var(--stroke);background:var(--panel);color:var(--muted);font-size:.85rem;font-weight:600;white-space:nowrap;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.chip .n{font-size:.68rem;background:rgba(255,255,255,.08);border-radius:6px;padding:1px 6px;color:var(--muted-2)}
+.chip:hover{color:var(--text);border-color:var(--stroke-2)}
+.chip.active{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 8px 24px -10px rgba(99,102,241,.8)}
+.chip.active .n{background:rgba(255,255,255,.2);color:#fff}
+.select{height:40px;border-radius:11px;background:var(--panel);border:1px solid var(--stroke);padding:0 34px 0 13px;font-size:.85rem;color:var(--text);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%239aa0b6' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;max-width:100%}
+.select option{background:#12121f;color:var(--text)}
+.result-count{font-size:.8rem;color:var(--muted-2);margin:-10px 0 18px}
+.search-inline{display:none;align-items:center;gap:9px;height:44px;padding:0 14px;border-radius:13px;background:var(--panel);border:1px solid var(--stroke);margin-bottom:14px;color:var(--muted-2)}
+.search-inline:focus-within{border-color:rgba(139,92,246,.5)}
+.search-inline input{background:none;border:0;outline:0;width:100%;font-size:.9rem;color:var(--text)}
+.search-inline input::placeholder{color:var(--muted-2)}
+@media (max-width:880px){.search-inline{display:flex}}
+
+/* ============ PRODUCT CARDS ============ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.grid.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.pcard{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--stroke);border-radius:var(--r-md);overflow:hidden;transition:transform .25s ease,border-color .25s,box-shadow .3s;cursor:pointer}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.45);box-shadow:0 24px 50px -24px rgba(139,92,246,.35)}
+.pcard .pimg{position:relative;aspect-ratio:4/3;overflow:hidden;background:#12121e}
+.pcard .pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pcard:hover .pimg img{transform:scale(1.055)}
+.pcard .pimg .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--grad-soft);color:rgba(255,255,255,.35);font-family:var(--font-display);font-weight:800;font-size:2.4rem}
+.pcard .pimg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,7,14,.55));pointer-events:none}
+.badge{position:absolute;z-index:2;font-size:.68rem;font-weight:700;letter-spacing:.02em;padding:5px 9px;border-radius:8px;backdrop-filter:blur(6px)}
+.badge.discount{top:10px;left:10px;background:rgba(52,211,153,.16);color:#6ee7b7;border:1px solid rgba(52,211,153,.35)}
+.badge.featured{top:10px;right:10px;background:rgba(139,92,246,.22);color:#ddd6fe;border:1px solid rgba(139,92,246,.4);display:flex;align-items:center;gap:4px}
+.pcard .cbody{padding:15px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pcard .pcat{font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-2)}
+.pcard .pname{font-family:var(--font-display);font-weight:600;font-size:1rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em}
+.pcard .pdesc{font-size:.79rem;color:var(--muted-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pcard .pfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.prices{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.price{font-family:var(--font-display);font-weight:700;font-size:1.06rem}
+.price-old{font-size:.8rem;color:var(--muted-2);text-decoration:line-through}
+.pcard .quick{width:34px;height:34px;border-radius:10px;background:var(--panel-2);border:1px solid var(--stroke);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:.2s;flex:none}
+.pcard:hover .quick{background:var(--grad);color:#fff;border-color:transparent}
+.pcard .sold{position:absolute;left:10px;bottom:10px;z-index:2;font-size:.64rem;color:#e9e9f5;background:rgba(7,7,14,.6);padding:3px 7px;border-radius:6px;border:1px solid var(--stroke);display:flex;align-items:center;gap:4px}
+
+/* ============ SKELETON / EMPTY ============ */
+.sk{position:relative;overflow:hidden;background:rgba(255,255,255,.05);border-radius:var(--r-md)}
+.sk::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);transform:translateX(-100%);animation:shimmer 1.4s infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.sk-card{height:330px;border:1px solid var(--stroke)}
+.empty{text-align:center;padding:64px 20px;border:1px dashed var(--stroke-2);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
+.empty .eicon{width:64px;height:64px;margin:0 auto 16px;border-radius:18px;background:var(--grad-soft);border:1px solid rgba(139,92,246,.25);display:flex;align-items:center;justify-content:center;color:var(--v-2)}
+.empty h3{font-size:1.15rem;margin-bottom:7px}
+.empty p{color:var(--muted);font-size:.9rem;max-width:380px;margin:0 auto 18px}
+
+/* ============ PROMO BANNER ============ */
+.promo{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(139,92,246,.3);background:linear-gradient(115deg,rgba(139,92,246,.24),rgba(99,102,241,.14) 45%,rgba(56,189,248,.16));padding:38px 40px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.promo::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(139,92,246,.3);filter:blur(80px);right:-60px;top:-120px;pointer-events:none}
+.promo h3{font-size:clamp(1.2rem,2.2vw,1.6rem);margin-bottom:6px}
+.promo p{color:#cfcbe8;font-size:.92rem;max-width:520px}
+.promo .btn{position:relative;flex:none}
+
+/* ============ CONTACT ============ */
+.contact-card{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--stroke);border-radius:var(--r-lg);padding:34px}
+.contact-card h2{font-size:1.5rem;margin:10px 0 10px}
+.contact-card p{color:var(--muted);font-size:.92rem;max-width:430px}
+.contact-rows{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.contact-row{display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:14px;background:var(--panel);border:1px solid var(--stroke);transition:.2s}
+.contact-row:hover{border-color:var(--stroke-2);background:var(--panel-2)}
+.contact-row .ci{width:38px;height:38px;border-radius:11px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;color:var(--v-2);flex:none}
+.contact-row b{display:block;font-size:.9rem}
+.contact-row span{font-size:.78rem;color:var(--muted-2)}
+.contact-row .arrow{margin-left:auto;color:var(--muted-2)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--stroke);margin-top:40px;padding:40px 0 34px;background:rgba(7,7,14,.6)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-bottom:30px}
+.foot-grid .fdesc{color:var(--muted-2);font-size:.84rem;margin-top:12px;max-width:280px;line-height:1.7}
+.fcol h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px;font-weight:700}
+.fcol a{display:block;padding:5px 0;color:var(--muted);font-size:.86rem;transition:color .2s}
+.fcol a:hover{color:var(--text)}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:22px;border-top:1px solid var(--stroke);flex-wrap:wrap}
+.foot-bottom p{color:var(--muted-2);font-size:.78rem}
+.pay-pills{display:flex;gap:7px;flex-wrap:wrap}
+.pay-pill{font-size:.68rem;color:var(--muted);border:1px solid var(--stroke);border-radius:7px;padding:4px 9px;background:var(--panel);font-weight:600;letter-spacing:.03em}
+
+/* ============ MODAL SYSTEM ============ */
+.overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(4,4,10,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow-y:auto;overscroll-behavior:contain}
+.overlay.open{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{position:relative;width:100%;max-width:860px;background:linear-gradient(180deg,#12121f,#0b0b16);border:1px solid var(--stroke-2);border-radius:var(--r-lg);box-shadow:var(--shadow);animation:pop .3s cubic-bezier(.2,.9,.3,1.2);margin:auto;max-height:calc(100vh - 44px);display:flex;flex-direction:column}
+@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal-close{position:absolute;top:14px;right:14px;z-index:5;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--stroke);color:var(--muted);display:flex;align-items:center;justify-content:center;transition:.2s}
+.modal-close:hover{background:rgba(251,113,133,.15);color:#fda4af;border-color:rgba(251,113,133,.3)}
+.modal-body{overflow-y:auto;overscroll-behavior:contain}
+
+/* product modal */
+.pm-grid{display:grid;grid-template-columns:1fr 1fr}
+.pm-media{position:relative;background:#0d0d18;min-height:340px}
+.pm-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.pm-media .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--grad-soft);font-family:var(--font-display);font-weight:800;font-size:4rem;color:rgba(255,255,255,.25)}
+.pm-info{padding:30px 30px 28px}
+.pm-info .pcat{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--b)}
+.pm-info h2{font-size:1.55rem;margin:9px 0 12px}
+.pm-desc{color:var(--muted);font-size:.9rem;line-height:1.7;white-space:pre-line}
+.pm-features{margin:18px 0;display:grid;gap:9px}
+.pm-features .feat{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;color:#d5d5e6}
+.pm-features .feat svg{flex:none;margin-top:2px;color:var(--ok)}
+.pm-price{display:flex;align-items:baseline;gap:10px;margin:18px 0 4px}
+.pm-price .price{font-size:1.9rem}
+.pm-price .price-old{font-size:1rem}
+.pm-price .save{font-size:.72rem;font-weight:700;color:#6ee7b7;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);padding:3px 9px;border-radius:7px;margin-left:2px}
+.pm-note{display:flex;align-items:center;gap:7px;font-size:.76rem;color:var(--muted-2);margin:10px 0 18px}
+.related{margin-top:26px;border-top:1px solid var(--stroke);padding-top:20px}
+.related h4{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-2);margin-bottom:12px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rel-card{border-radius:12px;overflow:hidden;border:1px solid var(--stroke);background:var(--panel);cursor:pointer;transition:.2s}
+.rel-card:hover{border-color:rgba(139,92,246,.4);transform:translateY(-2px)}
+.rel-card .rimg{aspect-ratio:16/10;background:#141422;position:relative;overflow:hidden}
+.rel-card .rimg img{width:100%;height:100%;object-fit:cover}
+.rel-card .rbody{padding:9px 10px 10px}
+.rel-card .rname{font-size:.76rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rel-card .rprice{font-size:.76rem;color:var(--v-2);font-weight:700;margin-top:2px}
+
+/* ============ PAYMENT MODAL ============ */
+.pay-modal{max-width:880px}
+.pay-head{padding:20px 24px;border-bottom:1px solid var(--stroke);display:flex;align-items:center;gap:12px}
+.pay-head .shield{width:38px;height:38px;border-radius:11px;background:var(--grad-soft);border:1px solid rgba(139,92,246,.3);display:flex;align-items:center;justify-content:center;color:var(--v-2);flex:none}
+.pay-head h3{font-size:1.02rem}
+.pay-head p{font-size:.74rem;color:var(--muted-2);margin-top:1px}
+.pay-head .step-pill{margin-left:auto;font-size:.68rem;color:var(--muted);border:1px solid var(--stroke);padding:5px 10px;border-radius:99px;background:var(--panel);white-space:nowrap}
+.pay-grid{display:grid;grid-template-columns:1.02fr .98fr}
+.pay-left{padding:24px}
+.pay-product{display:flex;gap:13px;padding:13px;border-radius:14px;background:var(--panel);border:1px solid var(--stroke);margin-bottom:16px}
+.pay-product .thumb{width:62px;height:62px;border-radius:10px;overflow:hidden;flex:none;background:#141422}
+.pay-product .thumb img{width:100%;height:100%;object-fit:cover}
+.pay-product .pmeta{min-width:0;flex:1}
+.pay-product .pmeta b{display:block;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pay-product .pmeta span{font-size:.72rem;color:var(--muted-2)}
+.pay-product .pmeta .license{display:inline-flex;align-items:center;gap:5px;font-size:.66rem;color:var(--v-2);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);padding:2px 7px;border-radius:5px;margin-top:5px}
+.kv{display:flex;justify-content:space-between;align-items:center;padding:9px 0;font-size:.85rem;border-bottom:1px dashed rgba(255,255,255,.06)}
+.kv:last-of-type{border-bottom:0}
+.kv span{color:var(--muted-2)}
+.kv b{font-weight:600;font-family:var(--font-body);font-size:.85rem;text-align:right}
+.kv.total{border-top:1px solid var(--stroke);margin-top:6px;padding-top:13px;border-bottom:0}
+.kv.total b{font-family:var(--font-display);font-size:1.35rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem !important;letter-spacing:.02em}
+.copy-mini{display:inline-flex;align-items:center;gap:4px;color:var(--muted-2);font-size:.68rem;padding:2px 6px;border-radius:5px;border:1px solid var(--stroke);background:var(--panel);margin-left:6px;vertical-align:1px}
+.copy-mini:hover{color:var(--text)}
+
+.pay-right{padding:24px;border-left:1px solid var(--stroke);background:rgba(255,255,255,.015);display:flex;flex-direction:column}
+.pay-status{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:600;padding:6px 12px;border-radius:99px;border:1px solid;margin:0 auto 14px}
+.pay-status.pending{color:var(--warn);border-color:rgba(251,191,36,.35);background:rgba(251,191,36,.08)}
+.pay-status.paid{color:var(--ok);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.08)}
+.pay-status.expired,.pay-status.failed{color:var(--bad);border-color:rgba(251,113,133,.35);background:rgba(251,113,133,.08)}
+.pay-status .pd{width:7px;height:7px;border-radius:50%;background:currentColor}
+.pay-status.pending .pd{animation:pulse 1.8s infinite}
+.qr-wrap{position:relative;width:min(232px,72vw);aspect-ratio:1;margin:0 auto;background:#fff;border-radius:16px;padding:12px;box-shadow:0 18px 44px -16px rgba(139,92,246,.45)}
+.qr-wrap img,.qr-wrap canvas{width:100%;height:100%;object-fit:contain;border-radius:6px;display:block}
+.qr-wrap .scanline{position:absolute;left:12px;right:12px;height:2px;background:linear-gradient(90deg,transparent,#8b5cf6,#38bdf8,transparent);border-radius:2px;box-shadow:0 0 14px rgba(139,92,246,.9);animation:scan 2.6s ease-in-out infinite;top:14px;display:none}
+.qr-wrap.scanning .scanline{display:block}
+@keyframes scan{0%,100%{top:14px}50%{top:calc(100% - 18px)}}
+.qr-wrap .qr-skel{position:absolute;inset:12px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#fff;color:#5b5b72;font-size:.74rem;font-weight:600}
+.qr-wrap .qr-skel .qspin{width:26px;height:26px;border-radius:50%;border:3px solid #e2e2ef;border-top-color:#8b5cf6;animation:spin .8s linear infinite}
+.qr-timer{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.78rem;color:var(--muted);margin:13px 0 3px}
+.qr-timer b{color:var(--text);font-variant-numeric:tabular-nums;font-weight:600}
+.amount-due{text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.32rem;margin:2px 0 14px}
+.amount-due small{display:block;font-family:var(--font-body);font-weight:500;font-size:.68rem;color:var(--muted-2);letter-spacing:.06em;margin-top:2px}
+.pay-actions{display:grid;gap:8px;margin-top:auto}
+.btn-check{position:relative}
+.pay-hint{font-size:.68rem;color:var(--muted-2);text-align:center;line-height:1.6;margin-top:10px}
+.instr{margin-top:16px;border-top:1px solid var(--stroke);padding-top:13px}
+.instr summary{font-size:.76rem;color:var(--muted);cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-weight:600}
+.instr summary::-webkit-details-marker{display:none}
+.instr summary svg{transition:transform .2s}
+.instr[open] summary svg{transform:rotate(180deg)}
+.instr ol{margin:10px 0 0;padding-left:18px;font-size:.74rem;color:var(--muted-2);line-height:1.9}
+.pay-err{display:flex;gap:9px;background:rgba(251,113,133,.09);border:1px solid rgba(251,113,133,.3);border-radius:11px;padding:11px 12px;font-size:.76rem;color:#fda4af;margin-bottom:10px;line-height:1.5}
+.pay-err svg{flex:none;margin-top:1px}
+.verify-flag{display:flex;align-items:center;gap:6px;justify-content:center;font-size:.66rem;color:var(--muted-2);margin-top:9px}
+.verify-flag .vspin{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);border-top-color:var(--v-2);animation:spin .8s linear infinite;display:none}
+.verify-flag.checking .vspin{display:block}
+.verify-flag.checking{color:var(--v-2)}
+
+/* success state */
+.pay-success{text-align:center;padding:12px 4px;display:none}
+.suc-check{width:88px;height:88px;margin:4px auto 16px;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(52,211,153,.35),rgba(52,211,153,.08));border:1px solid rgba(52,211,153,.4);display:flex;align-items:center;justify-content:center;position:relative}
+.suc-check::before{content:'';position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(52,211,153,.18);animation:ripple 2s infinite}
+@keyframes ripple{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+.suc-check svg path{stroke-dasharray:48;stroke-dashoffset:48;animation:draw .6s .15s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pay-success h4{font-size:1.28rem;margin-bottom:6px}
+.pay-success p{font-size:.84rem;color:var(--muted);margin-bottom:16px}
+.receipt{border:1px dashed var(--stroke-2);border-radius:12px;padding:11px 14px;font-size:.76rem;color:var(--muted);margin-bottom:16px;text-align:left;background:rgba(255,255,255,.02)}
+.receipt .rk{display:flex;justify-content:space-between;padding:3px 0;gap:10px}
+.receipt .rk b{color:var(--text);font-weight:600;text-align:right}
+.suc-actions{display:grid;gap:8px}
+
+/* ============ PURCHASES DRAWER ============ */
+.drawer{position:fixed;inset:0;z-index:110;display:none}
+.drawer.open{display:block}
+.drawer .scrim{position:absolute;inset:0;background:rgba(4,4,10,.66);backdrop-filter:blur(6px);animation:fadeIn .2s}
+.drawer .panel{position:absolute;top:0;right:0;bottom:0;width:min(500px,100vw);background:linear-gradient(180deg,#0e0e1b,#080810);border-left:1px solid var(--stroke-2);display:flex;flex-direction:column;animation:slideIn .28s cubic-bezier(.2,.9,.3,1)}
+.drawer-head{padding:20px 22px;border-bottom:1px solid var(--stroke);display:flex;align-items:center;gap:12px}
+.drawer-head h3{font-size:1.05rem}
+.drawer-head p{font-size:.72rem;color:var(--muted-2);margin-top:2px}
+.drawer-head .icon-btn{margin-left:auto}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 22px;overscroll-behavior:contain}
+.purchase-note{display:flex;gap:10px;background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.22);border-radius:12px;padding:12px;font-size:.74rem;color:#bae6fd;line-height:1.6;margin-bottom:16px}
+.purchase-note svg{flex:none;margin-top:2px}
+.purchase-note b{color:#e0f2fe}
+.purchase{display:flex;gap:13px;padding:14px;border-radius:15px;background:var(--panel);border:1px solid var(--stroke);margin-bottom:11px;transition:.2s}
+.purchase:hover{border-color:var(--stroke-2)}
+.purchase .pthumb{width:58px;height:58px;border-radius:10px;overflow:hidden;flex:none;background:#141422}
+.purchase .pthumb img{width:100%;height:100%;object-fit:cover}
+.purchase .pmain{flex:1;min-width:0}
+.purchase .ptitle{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.purchase .porder{font-size:.68rem;color:var(--muted-2);font-family:ui-monospace,monospace;margin-top:2px}
+.purchase .prow{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+.status-chip{font-size:.64rem;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:6px;border:1px solid;display:inline-flex;align-items:center;gap:4px}
+.status-chip.paid{color:#6ee7b7;background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)}
+.status-chip.pending{color:#fcd34d;background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)}
+.status-chip.expired,.status-chip.failed{color:#fda4af;background:rgba(251,113,133,.08);border-color:rgba(251,113,133,.3)}
+.purchase .pdate{font-size:.68rem;color:var(--muted-2)}
+.purchase .dl-btn{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;color:#fff;background:var(--grad);padding:6px 11px;border-radius:8px;box-shadow:0 6px 18px -8px rgba(99,102,241,.8)}
+.purchase .dl-btn.locked{background:var(--panel-2);color:var(--muted-2);box-shadow:none;border:1px solid var(--stroke);cursor:not-allowed}
+.purchase .dl-btn:hover{filter:brightness(1.1)}
+.recover-box{border-top:1px solid var(--stroke);margin-top:8px;padding-top:16px}
+.recover-box h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-bottom:8px}
+.recover-box p{font-size:.74rem;color:var(--muted-2);line-height:1.6;margin-bottom:10px}
+.recover-form{display:flex;gap:7px}
+.recover-form input{flex:1;height:40px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--stroke);padding:0 12px;font-size:.8rem;outline:0;min-width:0}
+.recover-form input:focus{border-color:rgba(139,92,246,.5)}
+
+/* ============ TOASTS ============ */
+#toasts{position:fixed;top:16px;right:16px;z-index:200;display:flex;flex-direction:column;gap:9px;max-width:min(360px,calc(100vw - 32px));pointer-events:none}
+.toast{pointer-events:auto;display:flex;gap:10px;align-items:flex-start;background:rgba(18,18,30,.94);border:1px solid var(--stroke-2);border-left:3px solid var(--v);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);font-size:.82rem;animation:toastIn .3s cubic-bezier(.2,.9,.3,1.1);backdrop-filter:blur(12px)}
+.toast.out{animation:toastOut .25s ease forwards}
+.toast.ok{border-left-color:var(--ok)}.toast.ok .ti{color:var(--ok)}
+.toast.err{border-left-color:var(--bad)}.toast.err .ti{color:var(--bad)}
+.toast.warn{border-left-color:var(--warn)}.toast.warn .ti{color:var(--warn)}
+.toast .ti{flex:none;margin-top:1px;color:var(--v-2)}
+.toast b{display:block;font-size:.82rem;margin-bottom:1px}
+.toast span{color:var(--muted);font-size:.76rem;line-height:1.45}
+@keyframes toastIn{from{transform:translateX(30px);opacity:0}to{transform:none;opacity:1}}
+@keyframes toastOut{to{transform:translateX(30px);opacity:0}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .nav-links{display:none}
+  .search-pill{width:200px}
+  .hero-art{height:400px}
+  .hcard{width:220px}
+}
+@media (max-width:880px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero{padding-top:40px}
+  .hero-art{display:none}
+  .hero-sub{max-width:100%}
+  .contact-card{grid-template-columns:1fr;padding:26px}
+  .pm-grid{grid-template-columns:1fr}
+  .pm-media{min-height:250px;aspect-ratio:16/10}
+  .pm-info{padding:22px 22px 24px}
+  .pay-grid{grid-template-columns:1fr}
+  .pay-right{border-left:0;border-top:1px solid var(--stroke)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .promo{flex-direction:column;align-items:flex-start;padding:28px 24px}
+  .btn-quiet.hide-sm{display:none}
+  .search-pill{display:none}
+  .burger{display:inline-flex}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .topbar-inner{height:62px;gap:10px}
+  .logo{font-size:1.05rem}
+  .logo svg{width:27px;height:27px}
+  .logo .tm{display:none}
+  .grid{grid-template-columns:repeat(2,1fr);gap:11px}
+  .grid.grid-3{grid-template-columns:repeat(2,1fr);gap:11px}
+  .pcard .cbody{padding:11px 11px 12px;gap:5px}
+  .pcard .pname{font-size:.84rem;min-height:0}
+  .pcard .pdesc{display:none}
+  .pcard .pcat{font-size:.58rem}
+  .price{font-size:.92rem}
+  .price-old{font-size:.7rem}
+  .pcard .quick{width:29px;height:29px;border-radius:8px}
+  .pcard .sold{display:none}
+  .badge{font-size:.6rem;padding:4px 7px}
+  .section{padding:38px 0}
+  .section-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .hero-stats{gap:20px}
+  .overlay{padding:0}
+  .modal{max-width:100%;max-height:100dvh;border-radius:0;border:0;min-height:100dvh}
+  .modal-close{top:10px;right:10px}
+  .pay-left,.pay-right{padding:18px 16px}
+  .pay-head{padding:16px 18px}
+  .pay-head .step-pill{display:none}
+  .drawer .panel{width:100vw}
+  .hero-ctas .btn{flex:1}
+  .trust-row{gap:14px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:22px}
+  .promo h3{font-size:1.15rem}
+  .qr-wrap{width:min(210px,64vw)}
+  .toast{border-radius:10px}
+  #toasts{top:10px;right:10px;left:10px;max-width:none}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+  .announce-inner{font-size:.72rem}
+  .modal-body{max-height:none}
+}
+@media (max-width:380px){
+  .grid{grid-template-columns:1fr}
+  .grid.grid-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="toasts" aria-live="polite"></div>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce" id="announceBar" hidden>
+  <div class="container announce-inner">
+    <span class="dot"></span>
+    <div class="announce-track"><span class="announce-text" id="announceText"></span></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="#" class="logo" aria-label="VAULTLY home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><path d="M16 2 29 9v14L16 30 3 23V9z" fill="url(#lg1)"/><path d="M10.5 11 16 22.5 21.5 11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      VAULTLY<span class="tm">STORE</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#store">Store</a>
+      <a href="#trending">Trending</a>
+      <a href="#new">New arrivals</a>
+      <a href="#contact">Support</a>
+    </nav>
+    <div class="top-actions">
+      <label class="search-pill" aria-label="Search products">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="searchInputTop" placeholder="Search products…" autocomplete="off" />
+        <kbd>⌘K</kbd>
+      </label>
+      <button class="btn btn-ghost btn-sm purch-btn" id="btnPurchases">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16l-1.5 13h-13z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg>
+        My purchases
+        <span class="purch-badge hidden" id="purchCount">0</span>
+      </button>
+      <button class="icon-btn burger" id="btnBurger" aria-label="Open menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="scrim" data-close-menu></div>
+  <div class="sheet">
+    <div class="mm-head">
+      <span class="logo" style="font-size:1rem"><svg viewBox="0 0 32 32" style="width:26px;height:26px"><path d="M16 2 29 9v14L16 30 3 23V9z" fill="url(#lg1)"/><path d="M10.5 11 16 22.5 21.5 11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>VAULTLY</span>
+      <button class="icon-btn" data-close-menu aria-label="Close menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <a href="#store" data-close-menu>Store</a>
+    <a href="#trending" data-close-menu>Trending</a>
+    <a href="#new" data-close-menu>New arrivals</a>
+    <a href="#contact" data-close-menu>Support</a>
+    <a href="#" id="mmPurchases" data-close-menu>My purchases</a>
+  </div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow"><span class="pulse"></span> Instant delivery · UPI checkout</span>
+          <h1>Digital assets<br />worth <span class="grad-text">vaulting.</span></h1>
+          <p class="hero-sub">Hand-picked templates, creative packs, ebooks and tools for builders and creators. Pay securely with any UPI app — your files unlock the moment payment is verified.</p>
+          <div class="hero-ctas">
+            <a href="#store" class="btn btn-primary btn-lg">
+              Explore the vault
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <button class="btn btn-ghost btn-lg" id="btnHowItWorks">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16h.01" stroke-linecap="round"/></svg>
+              How it works
+            </button>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item"><span class="ti"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z" stroke-linejoin="round"/></svg></span>Instant file unlock</div>
+            <div class="trust-item"><span class="ti"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6z" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg></span>Server-verified payments</div>
+            <div class="trust-item"><span class="ti"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke-linecap="round"/></svg></span>Lifetime access</div>
+          </div>
+        </div>
+        <div class="hero-art" id="heroArt" aria-hidden="true">
+          <div class="ring"></div><div class="ring r2"></div>
+          <div class="hcard c1" data-slot="0"><div class="thumb" style="background:linear-gradient(135deg,#2b1b56,#101a35)"></div><div class="body"><div class="cat">Loading</div><div class="name">&nbsp;</div><div class="price-row"><span class="price">—</span></div></div></div>
+          <div class="hcard c2" data-slot="1"><div class="thumb" style="background:linear-gradient(135deg,#10304a,#1b1450)"></div><div class="body"><div class="cat">Loading</div><div class="name">&nbsp;</div><div class="price-row"><span class="price">—</span></div></div></div>
+          <div class="hcard c3" data-slot="2"><div class="thumb" style="background:linear-gradient(135deg,#301b4e,#0f2c3f)"></div><div class="body"><div class="cat">Loading</div><div class="name">&nbsp;</div><div class="price-row"><span class="price">—</span></div></div></div>
+          <div class="hero-glowtag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% verified payments</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><b id="statProducts">—</b><span>Products in vault</span></div>
+        <div class="hs"><b id="statDeliveries">—</b><span>Files delivered</span></div>
+        <div class="hs"><b id="statCategories">—</b><span>Categories</span></div>
+        <div class="hs"><b id="statDeliveryTime">&lt; 30s</b><span>Typical unlock time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE -->
+  <section class="section" id="store">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">The vault</span>
+          <h2 data-bind="storeHeading">Explore digital products</h2>
+          <p class="section-sub">Every product is an instant download. Filter by category, search by name, and check out with UPI.</p>
+        </div>
+        <a class="link-more" href="#new">New arrivals <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <label class="search-inline" aria-label="Search products">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
+        <input type="search" id="searchInputMobile" placeholder="Search the vault…" autocomplete="off" />
+      </label>
+      <div class="toolbar">
+        <div class="chips" id="categoryChips" role="tablist" aria-label="Categories">
+          <button class="chip active" data-cat="All">All</button>
+        </div>
+        <select class="select" id="sortSelect" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="newest">Newest first</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="popular">Best selling</option>
+          <option value="discount">Biggest discount</option>
+        </select>
+      </div>
+      <div class="result-count" id="resultCount" aria-live="polite"></div>
+      <div class="grid" id="productGrid" aria-busy="true">
+        <div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div>
+        <div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO -->
+  <section class="container" style="padding-bottom:14px">
+    <div class="promo">
+      <div>
+        <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#e9e6ff">One-time payment</span>
+        <h3 id="promoTitle" style="margin-top:12px">Buy once. Own it forever.</h3>
+        <p id="promoText">No subscriptions, no renewals. Pay with UPI, verify automatically, download instantly.</p>
+      </div>
+      <a href="#new" class="btn btn-ghost btn-lg" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.1)">See new arrivals</a>
+    </div>
+  </section>
+
+  <!-- TRENDING -->
+  <section class="section" id="trending">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Hot right now</span>
+          <h2>Trending products</h2>
+          <p class="section-sub">The most-purchased assets across the store.</p>
+        </div>
+        <a class="link-more" href="#store">View all <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="grid" id="trendingGrid">
+        <div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW -->
+  <section class="section" id="new" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Fresh drops</span>
+          <h2>New arrivals</h2>
+          <p class="section-sub">Just added to the vault. Grab them while they're new.</p>
+        </div>
+      </div>
+      <div class="grid grid-3" id="newGrid">
+        <div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div>
+          <span class="eyebrow">Support</span>
+          <h2>Need help with an order?</h2>
+          <p>Payment issue, download problem, or a question before buying — reach us directly and we'll sort it out. Include your Order ID so we can look it up fast.</p>
+          <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+            <button class="btn btn-ghost" id="btnRecoverSupport">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
+              Recover a purchase
+            </button>
+            <a class="btn btn-ghost" href="#store">Browse products</a>
+          </div>
+        </div>
+        <div class="contact-rows" id="contactRows">
+          <div class="contact-row"><span class="ci"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span><div><b>Email support</b><span id="contactEmail">Loading…</span></div><span class="arrow">→</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <span class="logo" style="font-size:1.05rem">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 29 9v14L16 30 3 23V9z" fill="url(#lg1)"/><path d="M10.5 11 16 22.5 21.5 11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          VAULTLY
+        </span>
+        <p class="fdesc">A premium marketplace for digital products. Instant delivery, transparent pricing, verified UPI payments.</p>
+        <p class="fdesc" style="margin-top:10px;font-size:.72rem">© <span id="yearNow"></span> <span id="footStoreName">VAULTLY</span>. All rights reserved.</p>
+      </div>
+      <div class="fcol">
+        <h4>Store</h4>
+        <a href="#store">All products</a>
+        <a href="#trending">Trending</a>
+        <a href="#new">New arrivals</a>
+        <a href="#" id="footPurchases">My purchases</a>
+      </div>
+      <div class="fcol">
+        <h4>Support</h4>
+        <a href="#contact">Contact us</a>
+        <a href="#" data-info="how">How it works</a>
+        <a href="#" data-info="refunds">Refund policy</a>
+        <a href="#" data-info="terms">Terms of use</a>
+      </div>
+      <div class="fcol">
+        <h4>Payments</h4>
+        <div class="pay-pills" style="margin-top:2px">
+          <span class="pay-pill">UPI</span><span class="pay-pill">GPay</span><span class="pay-pill">PhonePe</span><span class="pay-pill">Paytm</span><span class="pay-pill">BHIM</span>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted-2);margin-top:12px;line-height:1.7">Payments verified live with the payment gateway before any file unlocks.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>Built with Firebase Realtime Database · Secure UPI checkout</p>
+      <p style="display:flex;gap:14px;align-items:center">
+        <a href="admin.html" style="color:var(--muted-2)">Admin</a>
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:var(--ok)"></span> All systems operational</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="productOverlay" role="dialog" aria-modal="true" aria-label="Product details">
+  <div class="modal">
+    <button class="modal-close" data-close="productOverlay" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="modal-body" id="productModalBody"></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="overlay" id="payOverlay" role="dialog" aria-modal="true" aria-label="Checkout">
+  <div class="modal pay-modal">
+    <div class="pay-head">
+      <div class="shield">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6z" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h3 id="payTitle">Secure checkout</h3>
+        <p id="paySub">Payment verified with PayZapi · UPI</p>
+      </div>
+      <span class="step-pill" id="payStepPill">Awaiting payment</span>
+      <button class="modal-close" style="position:static;margin-left:8px" data-close-pay aria-label="Close checkout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- NORMAL STATE -->
+      <div id="payBodyNormal">
+        <div class="pay-grid">
+          <div class="pay-left">
+            <div class="pay-product" id="payProduct"></div>
+            <div class="kv"><span>Order ID</span><b class="mono" id="payOrderId">—</b></div>
+            <div class="kv"><span>Payment method</span><b id="payMethod">UPI (PayZapi)</b></div>
+            <div class="kv"><span>Subtotal</span><b id="paySubtotal">—</b></div>
+            <div class="kv" id="payDiscountRow" hidden><span>Discount</span><b id="payDiscount">—</b></div>
+            <div class="kv total"><span>Amount to pay</span><b id="payTotal">—</b></div>
+            <div class="pay-err" id="payErrorBox" hidden>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01" stroke-linecap="round"/></svg>
+              <span id="payErrorText"></span>
+            </div>
+            <details class="instr" id="payInstr">
+              <summary>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Payment instructions
+              </summary>
+              <ol>
+                <li>Scan the QR with any UPI app, or tap <b>Pay with any UPI App</b>.</li>
+                <li>Pay the exact amount shown. Don't edit it — the gateway matches the exact amount &amp; reference.</li>
+                <li>Keep this window open. Status refreshes automatically every 3 seconds.</li>
+                <li>Files unlock the moment the payment is confirmed by the gateway.</li>
+              </ol>
+            </details>
+            <div class="verify-flag" id="verifyFlag"><span class="vspin"></span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6z"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg><span id="verifyFlagText">Auto-checking payment status…</span></div>
+          </div>
+          <div class="pay-right">
+            <div class="pay-status pending" id="payStatusChip"><span class="pd"></span><span id="payStatusText">Waiting for payment</span></div>
+            <div class="qr-wrap scanning" id="qrWrap">
+              <div class="scanline"></div>
+              <div class="qr-skel" id="qrSkel"><span class="qspin"></span><span>Generating secure QR…</span></div>
+              <img id="qrImage" alt="UPI payment QR code" style="display:none" />
+              <canvas id="qrCanvas" style="display:none"></canvas>
+            </div>
+            <div class="qr-timer" id="qrTimer" hidden>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6" stroke-linecap="round"/></svg>
+              QR valid for <b id="timerValue">15:00</b>
+            </div>
+            <div class="amount-due" id="amountDue">—<small>EXACT AMOUNT · INR</small></div>
+            <div class="pay-actions">
+              <button class="btn btn-primary" id="btnUpiApp" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2" stroke-linecap="round"/></svg>
+                Pay with any UPI App
+              </button>
+              <button class="btn btn-ghost btn-check" id="btnCheckPayment">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 11a8 8 0 1 0-2.3 5.7" stroke-linecap="round"/><path d="M20 5v6h-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Check payment</span>
+              </button>
+              <button class="btn btn-quiet btn-sm" id="btnOpenCheckout" hidden>Open hosted checkout page →</button>
+            </div>
+            <p class="pay-hint">Auto-verification runs every 3s. Never close this window before the status changes — you can also reopen it from <b>My purchases</b>.</p>
+          </div>
+        </div>
+      </div>
+      <!-- SUCCESS STATE -->
+      <div id="payBodySuccess" class="hidden" style="padding:34px 26px 30px;max-width:520px;margin:0 auto;width:100%">
+        <div class="pay-success" style="display:block">
+          <div class="suc-check">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Payment verified — you're all set!</h4>
+          <p id="successSub">Your files are unlocked and available in My purchases forever.</p>
+          <div class="receipt" id="successReceipt"></div>
+          <div class="suc-actions">
+            <a class="btn btn-primary btn-lg" id="btnSuccessDownload" href="#" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download product files
+            </a>
+            <button class="btn btn-ghost" id="btnSuccessPurchases">View in My purchases</button>
+            <button class="btn btn-quiet btn-sm" id="btnSuccessClose">Continue shopping</button>
+          </div>
+        </div>
+      </div>
+      <!-- ERROR / EXPIRED STATE -->
+      <div id="payBodyError" class="hidden" style="padding:34px 26px 30px;max-width:520px;margin:0 auto;width:100%;text-align:center">
+        <div style="width:80px;height:80px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.35);color:#fda4af" id="errIcon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V13M12 16.5h.01" stroke-linecap="round"/></svg>
+        </div>
+        <h4 style="font-size:1.25rem" id="errTitle">Payment failed</h4>
+        <p style="color:var(--muted);font-size:.87rem;margin:7px 0 20px" id="errSub">No payment was captured. You can safely retry.</p>
+        <div class="receipt" id="errReceipt" style="margin-bottom:18px"></div>
+        <div class="suc-actions" style="max-width:340px;margin:0 auto">
+          <button class="btn btn-primary" id="btnRetryPayment">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 11a8 8 0 1 0-2.3 5.7" stroke-linecap="round"/><path d="M20 5v6h-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Retry payment</span>
+          </button>
+          <button class="btn btn-ghost" id="btnErrCheck">Check payment again</button>
+          <button class="btn btn-quiet btn-sm" id="btnErrClose">Close</button>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted-2);margin-top:16px" id="errHelp"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PURCHASES DRAWER -->
+<div class="drawer" id="purchasesDrawer" aria-label="My purchases">
+  <div class="scrim" data-close-drawer></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="My purchases">
+    <div class="drawer-head">
+      <div>
+        <h3>My purchases</h3>
+        <p>Linked to this device · <span id="deviceShort">—</span></p>
+      </div>
+      <button class="icon-btn" data-close-drawer aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="purchase-note">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6z"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg>
+        <div>Purchases are tied to this browser's anonymous device ID. Clearing browser data or switching devices hides this list — use <b>Recover purchase</b> with your Order ID to restore access.</div>
+      </div>
+      <div id="purchasesList"><div class="sk" style="height:86px;margin-bottom:11px"></div><div class="sk" style="height:86px"></div></div>
+      <div class="recover-box">
+        <h4>Recover a purchase</h4>
+        <p>Enter an Order ID (or PayZapi payment ID) from your receipt. Verified paid orders will be re-linked to this device.</p>
+        <form class="recover-form" id="recoverForm">
+          <input type="text" id="recoverInput" placeholder="e.g. VLT-M3K9X2-F4A1" autocomplete="off" spellcheck="false" />
+          <button class="btn btn-ghost btn-sm" type="submit" id="recoverBtn">Find</button>
+        </form>
+        <p id="recoverMsg" style="margin-top:9px;font-size:.74rem;display:none"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO MODAL -->
+<div class="overlay" id="infoOverlay" role="dialog" aria-modal="true" aria-label="Information">
+  <div class="modal" style="max-width:640px">
+    <button class="modal-close" data-close="infoOverlay" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="modal-body" style="padding:34px 30px 30px" id="infoBody"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+<script>
+/* qrcode-generator v1.4.4 — MIT — Kazuhiko Arase (inlined) */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,(function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1}))},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(t,r){var e=n("友");if(2!=e.length||38726!=(e[0]<<8|e[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}((function(){return qrcode}));
+</script>
+<script id="app-main">
+
+/* ================================================================
+   VAULTLY STORE — app core
+   ================================================================ */
+'use strict';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCChxWVg-w1TiertxkUrfUgcC19y-CPNw",
+  authDomain: "hiiii-72d78.firebaseapp.com",
+  databaseURL: "https://hiiii-72d78-default-rtdb.firebaseio.com",
+  projectId: "hiiii-72d78",
+  storageBucket: "hiiii-72d78.firebasestorage.app",
+  messagingSenderId: "560685164053",
+  appId: "1:560685164053:web:7f672f7503160ec868901c"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+const PAYZAPI_BASE = 'https://payzapi.in/api/v1';
+const POLL_MS = 3000;
+const UPI_TTL_MS = 15 * 60 * 1000;
+const POLICY = { maxAttempts: 4, minPaidAmount: 1 };
+
+/* ---------- micro utils ---------- */
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function money(n){ const v = Number(n); return '₹' + (isFinite(v) ? v.toLocaleString('en-IN', {maximumFractionDigits: 2}) : '0'); }
+function fmtDate(ts){
+  if (!ts) return '—';
+  const d = new Date(ts);
+  if (isNaN(d)) return '—';
+  return d.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'}) + ', ' +
+         d.toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'});
+}
+function safeUrl(u){ return /^https?:\/\//i.test(String(u || '')) ? String(u) : ''; }
+function isEmbeddableImage(u){ const s = safeUrl(u); if (!s) return false; return !/\.(zip|rar|7z|pdf|exe|apk|dmg|iso|mp4|mp3|otf|ttf|woff2?|psd|ai|fig|sketch)(\?|#|$)/i.test(s); }
+function graceIcon(){
+  return '<svg viewBox="0 0 32 32" width="100%" height="100%" style="opacity:.9"><defs><linearGradient id="pg' + Math.random().toString(36).slice(2,7) + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect width="32" height="32" fill="rgba(139,92,246,.10)"/><path d="M16 5 27 11v10L16 27 5 21V11z" fill="none" stroke="rgba(167,139,250,.55)" stroke-width="1.4"/><path d="M11.5 12.5 16 21.5 20.5 12.5" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+function toast(title, msg, type = 'info', ms = 4200){
+  const wrap = $('#toasts'); if (!wrap) return;
+  const iconMap = {
+    ok:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    err:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01" stroke-linecap="round"/></svg>',
+    warn:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3 2.5 20h19z" stroke-linejoin="round"/><path d="M12 9.5V14M12 17h.01" stroke-linecap="round"/></svg>',
+    info:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01" stroke-linecap="round"/></svg>'
+  };
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.innerHTML = '<span class="ti">' + (iconMap[type] || iconMap.info) + '</span><div><b>' + esc(title) + '</b>' + (msg ? '<span>' + esc(msg) + '</span>' : '') + '</div>';
+  wrap.appendChild(el);
+  if (wrap.children.length > 4) wrap.firstElementChild.remove();
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 280); }, ms);
+}
+function copyText(text){
+  const done = () => toast('Copied', 'Copied to clipboard.', 'ok', 1800);
+  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done)); }
+  else fallbackCopy(text, done);
+}
+function fallbackCopy(text, cb){
+  try { const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); cb(); }
+  catch (e) { toast('Copy failed', 'Please copy manually.', 'warn'); }
+}
+function uuid(){
+  try { if (crypto && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
+  try {
+    const a = new Uint8Array(16); crypto.getRandomValues(a);
+    a[6] = (a[6] & 15) | 64; a[8] = (a[8] & 63) | 128;
+    const h = Array.from(a, b => b.toString(16).padStart(2, '0')).join('');
+    return h.slice(0,8) + '-' + h.slice(8,12) + '-' + h.slice(12,16) + '-' + h.slice(16,20) + '-' + h.slice(20);
+  } catch (e) { return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); }); }
+}
+function randId(len = 6){
+  const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; const a = new Uint8Array(len);
+  try { crypto.getRandomValues(a); } catch (e) { for (let i = 0; i < len; i++) a[i] = Math.random() * 256 | 0; }
+  return Array.from(a, b => abc[b % abc.length]).join('');
+}
+
+/* ---------- anonymous device identity ---------- */
+const DEVICE_KEY = 'digital_store_device_id';
+let IDENTITY = { id: null, persistent: true };
+function initDeviceId(){
+  let id = null;
+  try { id = localStorage.getItem(DEVICE_KEY); } catch (e) { IDENTITY.persistent = false; }
+  if (!id || !/^device_[a-z0-9_]{8,80}$/i.test(id)) {
+    id = 'device_' + randId(5).toLowerCase() + '_' + uuid();
+    try { localStorage.setItem(DEVICE_KEY, id); IDENTITY.persistent = true; } catch (e) { IDENTITY.persistent = false; }
+  }
+  IDENTITY.id = id;
+  return id;
+}
+initDeviceId();
+function touchDevice(){
+  if (!IDENTITY.id) return Promise.resolve();
+  return db.ref('devices/' + IDENTITY.id).update({ deviceId: IDENTITY.id, lastSeen: Date.now() }).catch(() => {});
+}
+
+/* ---------- live state ---------- */
+const state = {
+  products: {}, categories: {}, settings: {},
+  orders: {}, // own orders by orderId
+  ui: { category: 'All', sort: 'featured', q: '' },
+  stats: {},
+  listenersAttached: false
+};
+let productsReady = false;
+let heroReady = false;
+
+/* Reads BOTH the canonical schema (name/price/originalPrice/image) and the
+   legacy schema used by other apps on this same DB (title/price/discountPrice/imageUrl). */
+function normalizeProduct(raw, id){
+  const p = Object.assign({}, raw || {});
+  const listPrice = Number(p.price || 0);
+  const deal = Number(p.discountPrice || 0);
+  let selling = listPrice, original = p.originalPrice ? Number(p.originalPrice) : null;
+  if (p.originalPrice === undefined && deal > 0 && listPrice > 0 && deal < listPrice) { selling = deal; original = listPrice; }
+  else if (p.originalPrice === undefined && deal > 0 && listPrice > 0 && deal === listPrice) { selling = deal; }
+  else if (p.originalPrice !== undefined) { selling = listPrice; }
+  p.id = p.id || id;
+  p.name = String(p.name || p.title || 'Untitled product');
+  p.title = p.name;
+  p.price = selling;
+  p.originalPrice = original && original > selling ? original : null;
+  p.featured = p.featured === true || p.featured === 'true';
+  p.active = p.active !== false;
+  p.trending = p.trending === true;
+  p.downloadUrl = p.downloadUrl || p.fileUrl || '';
+  p.image = p.image || p.imageUrl || '';
+  p.category = p.category || 'Digital';
+  p.subcategory = p.subcategory || '';
+  p.salesCount = Number(p.salesCount || 0);
+  p.description = p.description || p.shortDescription || '';
+  p.features = Array.isArray(p.features) ? p.features : (typeof p.features === 'string' && p.features.trim() ? p.features.split('\n').map(s => s.trim()).filter(Boolean) : []);
+  p.createdAt = Number(p.createdAt || 0) || 0;
+  p.updatedAt = Number(p.updatedAt || 0) || 0;
+  return p;
+}
+function productList(){
+  return Object.values(state.products)
+    .filter(p => p.active)
+    .sort((a, b) => (b.featured === true) - (a.featured === true) || b.createdAt - a.createdAt);
+}
+function discountPct(p){
+  if (!p.originalPrice || p.originalPrice <= p.price) return 0;
+  return Math.round((1 - p.price / p.originalPrice) * 100);
+}
+function soldCount(p){ return Number((state.stats[p.id] || {}).sold || 0) + Number(p.salesCount || 0); }
+
+/* ---------- product card ---------- */
+function productCardHTML(p){
+  const img = isEmbeddableImage(p.image);
+  const d = discountPct(p);
+  const sold = soldCount(p);
+  return (
+  '<article class="pcard" data-pid="' + esc(p.id) + '" tabindex="0" role="button" aria-label="' + esc(p.name) + '">' +
+    '<div class="pimg">' +
+      (img ? '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' : '') +
+      '<div class="ph" style="display:' + (img ? 'none' : 'flex') + '">' + graceIcon() + '</div>' +
+      (d > 0 ? '<span class="badge discount">-' + d + '%</span>' : '') +
+      ((p.featured || p.trending) ? '<span class="badge featured"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 15 9l7 .8-5.2 4.8 1.4 7-6.2-3.5L5.8 21.6l1.4-7L2 9.8 9 9z"/></svg>Featured</span>' : '') +
+      (sold > 0 ? '<span class="sold"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>' + sold + ' sold</span>' : '') +
+    '</div>' +
+    '<div class="cbody">' +
+      '<span class="pcat">' + esc(p.category || 'Digital') + '</span>' +
+      '<h3 class="pname">' + esc(p.name) + '</h3>' +
+      '<p class="pdesc">' + esc(p.shortDescription || p.description || '').slice(0, 110) + '</p>' +
+      '<div class="pfoot"><div class="prices"><span class="price">' + money(p.price) + '</span>' +
+        (p.originalPrice && p.originalPrice > p.price ? '<span class="price-old">' + money(p.originalPrice) + '</span>' : '') +
+      '</div><span class="quick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>' +
+    '</div>' +
+  '</article>');
+}
+function skeletonCards(n){
+  return Array.from({length: n}, () => '<div class="sk sk-card"></div>').join('');
+}
+function emptyState(icon, title, sub, actionHTML){
+  return '<div class="empty" style="grid-column:1/-1"><div class="eicon">' + icon + '</div><h3>' + esc(title) + '</h3><p>' + esc(sub) + '</p>' + (actionHTML || '') + '</div>';
+}
+const icons = {
+  search:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>',
+  box:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 9 4.5v9L12 21l-9-4.5v-9z" stroke-linejoin="round"/><path d="m3.5 7.8 8.5 4.2 8.5-4.2M12 12v9" stroke-linejoin="round"/></svg>',
+  cart:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h2l2.2 10.2h9.6L20 8H7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>',
+  wifi:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 8.5a15 15 0 0 1 19 0M5.5 12a10.5 10.5 0 0 1 13 0M8.6 15.4a6 6 0 0 1 6.8 0" stroke-linecap="round"/><circle cx="12" cy="19" r="1.4" fill="currentColor"/></svg>'
+};
+
+/* ---------- catalog render ---------- */
+function visibleProducts(){
+  const q = state.ui.q.trim().toLowerCase();
+  let list = productList();
+  if (state.ui.category !== 'All') list = list.filter(p => p.category === state.ui.category);
+  if (q) {
+    list = list.filter(p =>
+      (p.name || '').toLowerCase().includes(q) ||
+      (p.description || '').toLowerCase().includes(q) ||
+      (p.category || '').toLowerCase().includes(q) ||
+      (p.tags || '').toString().toLowerCase().includes(q));
+  }
+  const s = state.ui.sort;
+  if (s === 'newest') list.sort((a, b) => b.createdAt - a.createdAt);
+  else if (s === 'price-asc') list.sort((a, b) => a.price - b.price);
+  else if (s === 'price-desc') list.sort((a, b) => b.price - a.price);
+  else if (s === 'popular') list.sort((a, b) => soldCount(b) - soldCount(a));
+  else if (s === 'discount') list.sort((a, b) => discountPct(b) - discountPct(a));
+  return list;
+}
+function renderCatalog(){
+  const grid = $('#productGrid');
+  const all = productList();
+  if (!productsReady) { grid.innerHTML = skeletonCards(8); return; }
+  if (!all.length) {
+    grid.innerHTML = emptyState(icons.box, 'The vault is being stocked', 'No products are published yet. Check back shortly — new digital assets drop regularly.', '');
+    $('#resultCount').textContent = '';
+    renderChips();
+    return;
+  }
+  const list = visibleProducts();
+  grid.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyState(icons.search, 'No matches found', 'Nothing in the vault matches "' + state.ui.q + '"' + (state.ui.category !== 'All' ? ' in ' + state.ui.category : '') + '. Try a different keyword.', '<button class="btn btn-ghost btn-sm" data-clear-filters>Clear filters</button>');
+  $('#resultCount').textContent = list.length + ' of ' + all.length + ' products' + (state.ui.q ? ' · searching "' + state.ui.q + '"' : '') + (state.ui.category !== 'All' ? ' · ' + state.ui.category : '');
+  renderChips();
+  grid.setAttribute('aria-busy', 'false');
+}
+function categoryNames(){
+  const out = [];
+  Object.values(state.categories || {}).forEach(v => {
+    const n = typeof v === 'string' ? v : (v && v.name) || '';
+    if (n) out.push(String(n));
+  });
+  return out;
+}
+function renderChips(){
+  const box = $('#categoryChips');
+  const counts = {};
+  productList().forEach(p => { const c = p.category || 'Digital'; counts[c] = (counts[c] || 0) + 1; });
+  const cats = Array.from(new Set([...categoryNames(), ...Object.keys(counts)])).sort();
+  let html = '<button class="chip ' + (state.ui.category === 'All' ? 'active' : '') + '" data-cat="All">All <span class="n">' + productList().length + '</span></button>';
+  html += cats.map(c => '<button class="chip ' + (state.ui.category === c ? 'active' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + ' <span class="n">' + (counts[c] || 0) + '</span></button>').join('');
+  box.innerHTML = html;
+  const nCats = $('#statCategories'); if (nCats) nCats.textContent = cats.length || '—';
+  const nProd = $('#statProducts'); if (nProd) nProd.textContent = productList().length;
+}
+function renderTrending(){
+  const grid = $('#trendingGrid');
+  if (!productsReady) { grid.innerHTML = skeletonCards(4); return; }
+  const list = productList().slice().sort((a, b) => (b.trending === true) - (a.trending === true) || soldCount(b) - soldCount(a) || (b.featured === true) - (a.featured === true)).slice(0, 4);
+  grid.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyState(icons.cart, 'No sales yet', 'Trending products will appear here as orders come in.', '');
+}
+function renderNewArrivals(){
+  const grid = $('#newGrid');
+  if (!productsReady) { grid.innerHTML = skeletonCards(3); return; }
+  const list = productList().slice().sort((a, b) => b.createdAt - a.createdAt).slice(0, 3);
+  grid.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyState(icons.box, 'No new arrivals', 'Fresh products will show up here.', '');
+}
+function renderHeroCards(){
+  const art = $('#heroArt'); if (!art) return;
+  if (!productsReady) return;
+  const picked = productList().filter(p => p.featured).slice(0, 3);
+  const pool = picked.length ? picked : productList().slice(0, 3);
+  $$('.hcard', art).forEach((card, i) => {
+    const p = pool[i];
+    const thumb = $('.thumb', card);
+    const body = $('.body', card);
+    if (!p) { card.style.opacity = '.25'; thumb.innerHTML = ''; body.innerHTML = '<div class="cat">Vault</div><div class="name">Coming soon</div><div class="price-row"><span class="price">—</span></div>'; return; }
+    card.setAttribute('aria-hidden', 'false');
+    if (isEmbeddableImage(p.image)) {
+      thumb.innerHTML = '<img src="' + esc(p.image) + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()" />';
+    } else { thumb.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">' + graceIcon() + '</div>'; }
+    body.innerHTML = '<div class="cat">' + esc(p.category || 'Digital') + '</div>' +
+      '<div class="name">' + esc(p.name) + '</div>' +
+      '<div class="price-row"><span class="price">' + money(p.price) + '</span>' + (p.featured ? '<span class="badge-hot">Featured</span>' : '') + '</div>';
+    card.style.cursor = 'pointer';
+    card.onclick = () => openProduct(p.id);
+  });
+}
+function applySettingsToUI(){
+  const s = state.settings || {};
+  const name = s.storeName || 'VAULTLY';
+  document.title = name + ' — Premium Digital Products';
+  if ($('#footStoreName')) $('#footStoreName').textContent = name;
+  if ($('#promoTitle') && s.promoTitle) $('#promoTitle').textContent = s.promoTitle;
+  if ($('#promoText') && s.promoText) $('#promoText').textContent = s.promoText;
+  if ($('#storeHeading') && s.storeHeading) $('#storeHeading').textContent = s.storeHeading;
+  if ($('#statDeliveries')) $('#statDeliveries').textContent = Number(s.deliveriesCount || 0).toLocaleString('en-IN');
+  if (s.announcement && s.announcement.trim()) {
+    $('#announceBar').hidden = false;
+    $('#announceText').textContent = s.announcement + (s.announcement2 ? '   ·   ' + s.announcement2 : '');
+  } else { $('#announceBar').hidden = true; }
+  // contact
+  const rows = [];
+  if (s.supportEmail) rows.push(contactRow('mail', 'Email support', s.supportEmail, 'mailto:' + s.supportEmail));
+  if (s.supportWhatsapp) rows.push(contactRow('wa', 'WhatsApp', s.supportWhatsapp, 'https://wa.me/' + String(s.supportWhatsapp).replace(/[^\d]/g, ''), true));
+  if (s.supportTelegram) rows.push(contactRow('tg', 'Telegram', '@' + String(s.supportTelegram).replace(/^@/, ''), 'https://t.me/' + String(s.supportTelegram).replace(/^@/, ''), true));
+  if (s.supportHours) rows.push(contactRow('clock', 'Support hours', s.supportHours, ''));
+  const cw = $('#contactRows');
+  if (cw) cw.innerHTML = rows.join('') || contactRow('mail', 'Email support', 'Support email not configured yet', '');
+  const ce = $('#contactEmail'); if (ce && s.supportEmail) ce.textContent = s.supportEmail;
+  const y = $('#yearNow'); if (y) y.textContent = new Date().getFullYear();
+}
+function contactRow(kind, label, value, href, external){
+  const ic = {
+    mail:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>',
+    wa:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z" stroke-linejoin="round"/><path d="M8.8 9.4c0 3 2.8 5.8 5.8 5.8l1.4-1.4-1.9-1.2-1 .7c-.9-.4-1.8-1.3-2.2-2.2l.7-1-1.2-1.9z"/></svg>',
+    tg:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 4-4 16-5.5-5L8 18l-.4-4.5L20 5.5 7 12l-4-2z" stroke-linejoin="round"/></svg>',
+    clock:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2" stroke-linecap="round"/></svg>'
+  }[kind] || '';
+  const inner = '<span class="ci">' + ic + '</span><div><b>' + esc(label) + '</b><span>' + esc(value) + '</span></div>' + (href ? '<span class="arrow">→</span>' : '');
+  return href ? '<a class="contact-row" href="' + esc(href) + '"' + (external ? ' target="_blank" rel="noopener"' : '') + '>' + inner + '</a>' : '<div class="contact-row">' + inner + '</div>';
+}
+
+/* ================================================================
+   PRODUCT DETAILS
+   ================================================================ */
+let activeProductId = null;
+function findProduct(id){ return state.products[id] || null; }
+function openProduct(id){
+  const p = findProduct(id); if (!p) return;
+  activeProductId = id;
+  const img = isEmbeddableImage(p.image);
+  const d = discountPct(p);
+  let relFill = productList().filter(x => x.id !== p.id && x.category === p.category).slice(0, 3);
+  if (relFill.length < 3) {
+    const extra = productList().filter(x => x.id !== p.id && !relFill.includes(x)).slice(0, 3 - relFill.length);
+    relFill = relFill.concat(extra);
+  }
+  $('#productModalBody').innerHTML =
+    '<div class="pm-grid">' +
+      '<div class="pm-media">' +
+        (img ? '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" onerror="this.style.display=\'none\'" />' : '<div class="ph">' + esc((p.name || '?').charAt(0).toUpperCase()) + '</div>') +
+      '</div>' +
+      '<div class="pm-info">' +
+        '<span class="pcat">' + esc(p.category || 'Digital') + (p.subcategory ? ' · ' + esc(p.subcategory) : '') + '</span>' +
+        '<h2>' + esc(p.name) + '</h2>' +
+        '<p class="pm-desc">' + esc(p.description || p.shortDescription || 'No description provided.') + '</p>' +
+        (p.features && p.features.length ? '<div class="pm-features">' + p.features.map(f => '<div class="feat"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>' + esc(f) + '</span></div>').join('') + '</div>' : '') +
+        '<div class="pm-price"><span class="price">' + money(p.price) + '</span>' + (p.originalPrice && p.originalPrice > p.price ? '<span class="price-old">' + money(p.originalPrice) + '</span><span class="save">Save ' + d + '%</span>' : '') + '</div>' +
+        '<div class="pm-note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z" stroke-linejoin="round"/></svg> Instant download after verified payment · Lifetime access</div>' +
+        '<button class="btn btn-primary btn-lg btn-block" data-buy="' + esc(p.id) + '">' +
+          '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M2.5 10h19" stroke-linecap="round"/></svg>Buy now — ' + money(p.price) +
+        '</button>' +
+        '<button class="btn btn-ghost btn-block" style="margin-top:9px" data-close="productOverlay">Continue browsing</button>' +
+        '<div class="related"><h4>You may also like</h4><div class="related-grid">' +
+          (relFill.length ? relFill.map(r => '<div class="rel-card" data-open-product="' + esc(r.id) + '"><div class="rimg">' + (isEmbeddableImage(r.image) ? '<img src="' + esc(r.image) + '" alt="" loading="lazy" onerror="this.remove()" />' : '') + '</div><div class="rbody"><div class="rname">' + esc(r.name) + '</div><div class="rprice">' + money(r.price) + '</div></div></div>').join('') : '<p style="font-size:.8rem;color:var(--muted-2)">More products coming soon.</p>') +
+        '</div></div>' +
+      '</div>' +
+    '</div>';
+  openOverlay('productOverlay');
+  $('.modal-body', $('#productOverlay')).scrollTop = 0;
+}
+
+/* ================================================================
+   OVERLAY HELPERS
+   ================================================================ */
+function openOverlay(id){ $('#' + id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeOverlay(id){ $('#' + id).classList.remove('open'); if (!$$('.overlay.open').length && !$('.drawer.open')) document.body.style.overflow = ''; }
+function closeAllModals(){
+  stopPolling();
+  $$('.overlay.open').forEach(o => o.classList.remove('open'));
+  closeDrawer();
+  document.body.style.overflow = '';
+}
+function closeDrawer(){ $('#purchasesDrawer').classList.remove('open'); if (!$$('.overlay.open').length) document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if ($('#productOverlay').classList.contains('open')) closeOverlay('productOverlay');
+    else if ($('#infoOverlay').classList.contains('open')) closeOverlay('infoOverlay');
+    else if ($('#purchasesDrawer').classList.contains('open')) closeDrawer();
+    else if ($('#payOverlay').classList.contains('open')) tryClosePay();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault(); const si = $('#searchInputTop'); if (si && si.offsetParent) si.focus();
+  }
+});
+
+/* ================================================================
+   PAYZAPI GATEWAY
+   ================================================================ */
+function gatewayConfig(){
+  const s = (state.settings && state.settings) || {};
+  const pay = s.payzapi || {};
+  return {
+    enabled: pay.enabled === true,
+    apiKey: (pay.apiKey || '').trim(),
+    provider: (pay.provider || 'fampay').trim(),
+    mode: (pay.mode || 'direct').toLowerCase(),
+    proxyUrl: (pay.proxyUrl || '').trim().replace(/\/$/, ''),
+    expiryMinutes: clamp(Number(pay.expiryMinutes) || 15, 1, 1440),
+    configuredAt: pay.configuredAt || 0
+  };
+}
+function gatewayReady(cfg){
+  return cfg.enabled === true && (cfg.mode === 'proxy' ? !!cfg.proxyUrl : !!cfg.apiKey);
+}
+async function fetchGateway(action, payload, opts){
+  const cfg = gatewayConfig();
+  if (!gatewayReady(cfg)) throw new Error('Payments are not enabled yet. The store owner needs to configure the payment gateway in the admin panel.');
+  const timeout = new AbortController();
+  const t = setTimeout(() => timeout.abort(), 20000);
+  try {
+    if (cfg.mode === 'proxy' && cfg.proxyUrl) {
+      const res = await fetch(cfg.proxyUrl, {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(Object.assign({action: action}, payload, {apiKey: undefined, api_key: undefined})),
+        signal: timeout.signal
+      });
+      let body = null; try { body = await res.json(); } catch (e) {}
+      if (!res.ok || !body || body.ok === false) throw new Error((body && (body.message || body.error)) || ('Gateway proxy error (HTTP ' + res.status + ')'));
+      return body.data || body;
+    }
+    // Direct mode: browser -> PayZapi (PayZapi allows CORS). Key is stored in RTDB settings.
+    let url, init;
+    if (action === 'create') {
+      url = PAYZAPI_BASE + '/create';
+      init = { method: 'POST', headers: {'Content-Type': 'application/json', 'x-api-key': cfg.apiKey}, body: JSON.stringify(payload) };
+    } else {
+      url = PAYZAPI_BASE + '/check?order_id=' + encodeURIComponent(payload.order_id);
+      init = { method: 'GET', headers: {'x-api-key': cfg.apiKey} };
+    }
+    init.signal = timeout.signal;
+    const res = await fetch(url, init);
+    let body = null; try { body = await res.json(); } catch (e) {}
+    if (!body) throw new Error('Payment gateway returned an invalid response (HTTP ' + res.status + ').');
+    const statusStr = String(body.status || '').toLowerCase();
+    // NOTE: on /check, status "failed"/"expired" are PAYMENT states, not API errors.
+    const isApiError = statusStr === 'error' || (action === 'create' && (body.ok === false || statusStr === 'failed'));
+    if (isApiError) {
+      const msg = body.message || body.error || 'Payment gateway rejected the request.';
+      const err = new Error(msg); err.gateway = body; err.http = res.status; throw err;
+    }
+    return body.data && typeof body.data === 'object' ? Object.assign({}, body.data, body) : body;
+  } catch (e) {
+    if (e.name === 'AbortError') throw new Error('Payment gateway timed out. Check your connection and try again.');
+    if (e instanceof TypeError) throw new Error('Could not reach the payment gateway. Check your internet connection (or the store owner\'s CORS/proxy setup).');
+    throw e;
+  } finally { clearTimeout(t); }
+}
+function pickFirst(obj, keys){
+  for (const k of keys) { const v = obj ? obj[k] : undefined; if (v !== undefined && v !== null && v !== '') return v; }
+  return '';
+}
+function normalizeCreateResponse(raw){
+  const out = {
+    providerOrderId: String(pickFirst(raw, ['order_id','orderId','id','payment_id']) || ''),
+    paymentUrl: String(pickFirst(raw, ['payment_url','paymentUrl','checkout_url','checkoutUrl']) || ''),
+    qrImageUrl: String(pickFirst(raw, ['qr_image_url','qrImageUrl','qr_image','qrCodeUrl','qr_code_url']) || ''),
+    qrData: String(pickFirst(raw, ['qr_string','qrString','upi_link','upiLink','upi_intent','upi_uri','upi_url','qr_data','qrData','upi']) || ''),
+    upiLink: String(pickFirst(raw, ['upi_link','upiLink','upi_intent','upi_uri','deep_link','deepLink']) || ''),
+    expiresIn: Number(pickFirst(raw, ['expires_in','expiresIn','expiry_seconds']) || 0) || 0,
+    expiresAtRaw: pickFirst(raw, ['expires_at','expiresAt','expiry']),
+    amount: pickFirst(raw, ['amount','total_amount']),
+    raw: raw
+  };
+  if (out.upiLink && !/^upi:\/\//i.test(out.upiLink)) out.upiLink = '';
+  if (out.qrData && !/^upi:\/\//i.test(out.qrData) && /^https?:\/\//i.test(out.qrData)) { if (!out.paymentUrl) out.paymentUrl = out.qrData; }
+  if (!out.expiresIn) out.expiresIn = gatewayConfig().expiryMinutes * 60;
+  const ea = out.expiresAtRaw ? (typeof out.expiresAtRaw === 'number' ? out.expiresAtRaw : Date.parse(out.expiresAtRaw)) : NaN;
+  out.expiresAt = isFinite(ea) && ea > 0 ? (ea < 1e12 ? ea * 1000 : ea) : Date.now() + out.expiresIn * 1000;
+  return out;
+}
+function normalizeStatus(raw){
+  const s = String((raw && (raw.status || raw.payment_status || raw.order_status)) || '').toLowerCase().trim();
+  if (['completed','complete','success','successful','paid','captured','settled','confirmed'].includes(s)) return 'paid';
+  if (['expired','timeout','timed_out','cancelled','canceled'].includes(s)) return 'expired';
+  if (['failed','failure','declined','error','rejected'].includes(s)) return 'failed';
+  if (['pending','created','processing','waiting','unpaid','initiated','active'].includes(s)) return 'pending';
+  const ok = raw && (raw.ok === true || raw.success === true || raw.paid === true);
+  if (ok && (raw.utr || raw.paid_at)) return 'paid';
+  return 'pending';
+}
+function upiDeepLinkFrom(pay){
+  if (!pay) return '';
+  if (pay.upiLink && /^upi:\/\//i.test(pay.upiLink)) return pay.upiLink;
+  if (pay.qrData && /^upi:\/\//i.test(pay.qrData)) return pay.qrData;
+  const raw = pay.raw || {};
+  const vpa = pickFirst(raw, ['upi_id','upiId','upi_vpa','vpa','payee_vpa','merchant_vpa']);
+  if (vpa) {
+    const pn = pickFirst(raw, ['payee_name','merchant_name','merchantName']) || 'VAULTLY';
+    return 'upi://pay?pa=' + encodeURIComponent(String(vpa)) + '&pn=' + encodeURIComponent(String(pn)) +
+      '&am=' + Number(pay.amount || 0).toFixed(2) + '&cu=INR&tn=' + encodeURIComponent('Order ' + (pay.orderId || ''));
+  }
+  return '';
+}
+function qrPayloadFrom(pay){
+  if (pay.qrImageUrl) return '';
+  if (pay.qrData) return pay.qrData;
+  if (pay.upiLink) return pay.upiLink;
+  if (pay.paymentUrl) return pay.paymentUrl;
+  return '';
+}
+
+/* ================================================================
+   CHECKOUT / ORDER FLOW
+   ================================================================ */
+let PAY = null;            // active payment session
+let pollTimer = null;
+let countdownTimer = null;
+let pollBusy = false;
+let countingDown = false;
+
+function newOrderId(){ return 'VLT-' + randId(6) + '-' + randId(4); }
+
+async function startCheckout(productId, opts){
+  opts = opts || {};
+  const p = findProduct(productId);
+  if (!p) { toast('Product unavailable', 'This product is no longer listed.', 'err'); return; }
+  const cfg = gatewayConfig();
+  if (!gatewayReady(cfg)) {
+    toast('Payments not configured', 'The store has not enabled the payment gateway yet. Please try again later.', 'warn', 6000);
+    return;
+  }
+  closeOverlay('productOverlay');
+
+  // Reuse a recent pending order for the same device + product (prevents duplicates)
+  if (!opts.forceNew) {
+    const recent = Object.values(state.orders)
+      .filter(o => o && o.deviceId === IDENTITY.id && o.productId === productId && o.paymentStatus === 'pending' && o.orderStatus !== 'cancelled' && Date.now() - Number(o.createdAt || 0) < UPI_TTL_MS && o.gateway && o.gateway.providerOrderId)
+      .sort((a, b) => b.createdAt - a.createdAt)[0];
+    if (recent) {
+      // The session may have gone stale — only reuse it if the gateway still reports it as pending.
+      let fresh = false;
+      try {
+        const data = await fetchGateway('check', {order_id: recent.gateway.providerOrderId});
+        fresh = normalizeStatus(data) === 'pending';
+      } catch (e) { fresh = true; } // gateway unreachable: resume the existing order rather than spawn duplicates
+      if (fresh) { resumeOrder(recent); return; }
+      db.ref('orders/' + recent.orderId).update({paymentStatus: 'expired', orderStatus: 'cancelled', expiredAt: Date.now()}).catch(() => {});
+      delete state.orders[recent.orderId];
+    }
+  }
+
+  const orderId = newOrderId();
+  PAY = {
+    orderId: orderId, productId: productId, product: p, amount: p.price, status: 'pending',
+    providerOrderId: '', qrImageUrl: '', paymentUrl: '', upiLink: '', qrData: '', expiresAt: Date.now() + cfg.expiryMinutes * 60000,
+    attempt: 1, checking: false, verifying: false, error: ''
+  };
+  renderPayModal();
+  openOverlay('payOverlay');
+  setPayStatus('pending', 'Creating payment…');
+  $('#qrSkel').style.display = 'flex';
+  $('#qrImage').style.display = 'none'; $('#qrCanvas').style.display = 'none';
+  $('#qrWrap').classList.add('scanning');
+
+  try {
+    const payload = {
+      amount: Number(p.price.toFixed(2)),
+      payment_provider: cfg.provider || 'fampay',
+      client_order_id: orderId,
+      description: (p.name || 'Digital product').slice(0, 120),
+      redirect_url: location.origin + location.pathname + '?order=' + encodeURIComponent(orderId),
+      expiry_minutes: cfg.expiryMinutes
+    };
+    const data = await fetchGateway('create', payload);
+    const pay = normalizeCreateResponse(data || {});
+    if (!pay.providerOrderId) throw new Error('The gateway did not return a payment order ID. Please retry.');
+    pay.orderId = orderId; pay.amount = Number(p.price);
+    Object.assign(PAY, {
+      providerOrderId: pay.providerOrderId, qrImageUrl: pay.qrImageUrl, paymentUrl: pay.paymentUrl,
+      upiLink: upiDeepLinkFrom(pay), qrData: pay.qrData, expiresAt: pay.expiresAt, raw: pay.raw
+    });
+    // Persist the pending order locally + in RTDB
+    const orderDoc = {
+      orderId: orderId, deviceId: IDENTITY.id, productId: p.id, productName: p.name,
+      productImage: p.image || '', amount: Number(p.price), currency: 'INR',
+      paymentProvider: 'payzapi', paymentStatus: 'pending', orderStatus: 'pending',
+      transactionId: '', createdAt: Date.now(), paidAt: null, downloadUnlocked: false,
+      attempts: 1,
+      gateway: { providerOrderId: PAY.providerOrderId, qrImageUrl: PAY.qrImageUrl, paymentUrl: PAY.paymentUrl, upiLink: PAY.upiLink, qrData: PAY.qrData, expiresAt: PAY.expiresAt }
+    };
+    state.orders[orderId] = orderDoc;
+    await db.ref('orders/' + orderId).set(clean(orderDoc));
+    await ensureDeviceNode();
+    paintPaySession();
+    startPolling();
+    startCountdown();
+  } catch (e) {
+    handleCreateError(e);
+  }
+}
+function clean(obj){
+  const o = {};
+  for (const k in obj) { if (obj[k] !== undefined) o[k] = obj[k]; }
+  return o;
+}
+function handleCreateError(e){
+  PAY.status = 'failed';
+  PAY.error = e && e.message ? e.message : 'Could not create the payment.';
+  showPayErrorState('Payment could not be started', PAY.error, 'If this keeps happening, contact support with your order ID.');
+  setPayStatus('failed', 'Creation failed');
+  stopPolling(); stopCountdown();
+}
+async function ensureDeviceNode(){
+  try {
+    const ref = db.ref('devices/' + IDENTITY.id);
+    const snap = await ref.once('value');
+    if (!snap.exists()) await ref.set({ deviceId: IDENTITY.id, firstSeen: Date.now(), lastSeen: Date.now(), totalOrders: 0 });
+    else await ref.update({ lastSeen: Date.now() });
+  } catch (e) { console.warn('device meta', e.message); }
+}
+function renderPayModal(){
+  if (!PAY) return;
+  const p = PAY.product;
+  $('#payOverlay').classList.remove('open');
+  $('#payBodyNormal').classList.remove('hidden');
+  $('#payBodySuccess').classList.add('hidden');
+  $('#payBodyError').classList.add('hidden');
+  $('#payStepPill').textContent = 'Awaiting payment';
+  $('#payTitle').textContent = 'Secure checkout';
+  $('#payProduct').innerHTML =
+    '<div class="thumb">' + (isEmbeddableImage(p.image) ? '<img src="' + esc(p.image) + '" alt="" onerror="this.remove()" />' : graceIcon()) + '</div>' +
+    '<div class="pmeta"><b>' + esc(p.name) + '</b><span>' + esc(p.category || 'Digital product') + '</span><div class="license"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12.5 4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Personal license · Instant download</div></div>';
+  $('#payOrderId').innerHTML = '<span id="payOrderIdText">' + esc(PAY.orderId) + '</span><button class="copy-mini" data-copy="' + esc(PAY.orderId) + '">copy</button>';
+  $('#payMethod').textContent = 'UPI · PayZapi (' + (gatewayConfig().provider === 'binance' ? 'Binance USDT' : 'UPI ' + (gatewayConfig().provider || 'fampay')) + ')';
+  $('#paySubtotal').textContent = money(PAY.amount);
+  $('#payDiscountRow').hidden = true;
+  $('#payTotal').textContent = money(PAY.amount);
+  $('#amountDue').innerHTML = money(PAY.amount) + '<small>EXACT AMOUNT · INR</small>';
+  $('#qrWrap').classList.add('scanning');
+  $('#qrSkel').style.display = 'flex';
+  $('#qrImage').style.display = 'none'; $('#qrCanvas').style.display = 'none';
+  $('#qrImage').removeAttribute('src');
+  $('#qrTimer').hidden = false;
+  $('#payErrorBox').hidden = true;
+  $('#btnCheckPayment').disabled = true;
+  $('#btnUpiApp').disabled = true;
+  $('#btnOpenCheckout').hidden = true;
+  $('#payInstr').open = false;
+  $('#verifyFlag').classList.remove('checking');
+  $('#verifyFlagText').textContent = 'Auto-checking payment status every 3s';
+  setPayStatus('pending', 'Creating payment…');
+}
+function paintPaySession(){
+  // QR image (real, returned by gateway) or locally rendered QR of the returned data
+  const img = $('#qrImage'), canvas = $('#qrCanvas'), skel = $('#qrSkel');
+  $('#qrWrap').classList.remove('scanning');
+  if (PAY.qrImageUrl) {
+    img.onload = () => { skel.style.display = 'none'; img.style.display = 'block'; };
+    img.onerror = () => { img.style.display = 'none'; drawLocalQR(); };
+    img.src = PAY.qrImageUrl;
+    if (img.complete && img.naturalWidth) { skel.style.display = 'none'; img.style.display = 'block'; }
+  } else if (qrPayloadFrom(PAY)) {
+    drawLocalQR();
+  } else {
+    skel.style.display = 'flex';
+    skel.innerHTML = '<span style="text-align:center;padding:0 14px;font-size:.72rem;color:#5b5b72">No scannable QR returned.<br/>Use the hosted checkout or UPI button.</span>';
+  }
+  $('#amountDue').innerHTML = money(PAY.amount) + '<small>EXACT AMOUNT · INR</small>';
+  $('#btnCheckPayment').disabled = false;
+  $('#btnUpiApp').disabled = !(PAY.upiLink || PAY.paymentUrl);
+  const oc = $('#btnOpenCheckout');
+  if (PAY.paymentUrl) { oc.hidden = false; oc.onclick = () => window.open(PAY.paymentUrl, '_blank', 'noopener'); }
+  else oc.hidden = true;
+  setPayStatus('pending', 'Waiting for payment');
+  $('#payStepPill').textContent = 'Awaiting payment';
+}
+function drawLocalQR(){
+  const payload = qrPayloadFrom(PAY);
+  const canvas = $('#qrCanvas'), skel = $('#qrSkel');
+  try {
+    if (!payload || typeof qrcode !== 'function') throw new Error('qr unavailable');
+    const qr = qrcode(0, 'M');
+    qr.addData(payload);
+    qr.make();
+    const n = qr.getModuleCount();
+    const size = 480, cell = Math.floor(size / (n + 8)), pad = Math.floor((size - cell * n) / 2);
+    canvas.width = size; canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#0b0b16';
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) ctx.fillRect(pad + c * cell, pad + r * cell, cell, cell);
+    canvas.style.display = 'block'; skel.style.display = 'none';
+    $('#qrImage').style.display = 'none';
+    // internal fallback note
+    const note = $('#qrWrap'); note.title = PAY.qrImageUrl ? '' : 'QR rendered client-side from the gateway-provided payment data';
+  } catch (e) {
+    skel.style.display = 'flex';
+    skel.innerHTML = '<span style="text-align:center;padding:0 14px;font-size:.72rem;color:#5b5b72">Could not render QR.<br/>Use “Pay with any UPI App”.</span>';
+  }
+}
+function setPayStatus(kind, label){
+  const chip = $('#payStatusChip');
+  chip.className = 'pay-status ' + (kind === 'paid' ? 'paid' : kind === 'pending' ? 'pending' : kind);
+  $('#payStatusText').textContent = label;
+}
+function startCountdown(){
+  stopCountdown();
+  updateCountdown();
+  countdownTimer = setInterval(updateCountdown, 1000);
+}
+function stopCountdown(){ if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; } }
+function updateCountdown(){
+  if (!PAY) return;
+  const left = Math.max(0, PAY.expiresAt - Date.now());
+  const m = Math.floor(left / 60000), sec = Math.floor(left % 60000 / 1000);
+  const tv = $('#timerValue'); if (tv) tv.textContent = String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+  if (left <= 0 && PAY.status === 'pending') {
+    stopCountdown(); stopPolling();
+    PAY.status = 'expired';
+    showPayErrorState('Payment window expired', 'The payment session timed out. Start a fresh payment to continue.', 'You can still check payment — if you paid before the timer ran out, the gateway will confirm it.');
+    setPayStatus('expired', 'Expired');
+  }
+}
+
+/* ---------- polling ---------- */
+function startPolling(){
+  stopPolling();
+  if (!PAY || PAY.status !== 'pending') return;
+  setVerifyFlag(true, 'Auto-checking payment status every 3s');
+  const tick = async () => {
+    if (!PAY || PAY.status !== 'pending') return;
+    await checkPayment(false);
+    if (PAY && PAY.status === 'pending') { stopPolling(); pollTimer = setTimeout(tick, POLL_MS); }
+  };
+  stopPolling(); pollTimer = setTimeout(tick, 400);
+}
+function stopPolling(){
+  if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
+}
+function setVerifyFlag(checking, text){
+  const f = $('#verifyFlag');
+  if (!f) return;
+  f.classList.toggle('checking', !!checking);
+  const t = $('#verifyFlagText');
+  if (t && text) t.textContent = text;
+}
+async function checkPayment(manual){
+  if (!PAY || !PAY.providerOrderId) return;
+  if (pollBusy) return;
+  pollBusy = true;
+  const btn = $('#btnCheckPayment');
+  const label = $('span', btn);
+  if (manual) { btn.classList.add('is-loading'); if (label) label.textContent = 'Checking payment…'; }
+  setVerifyFlag(true, 'Checking with payment gateway…');
+  let result = null, err = null;
+  try {
+    const data = await fetchGateway('check', {order_id: PAY.providerOrderId});
+    result = { status: normalizeStatus(data), raw: data };
+    PAY.lastCheck = { at: Date.now(), status: result.status, raw: data };
+  } catch (e) { err = e; }
+  pollBusy = false;
+  if (manual) { btn.classList.remove('is-loading'); if (label) label.textContent = 'Check payment'; }
+
+  if (!PAY || PAY.status === 'paid') return;
+
+  if (err) {
+    setVerifyFlag(false, 'Connection issue — retrying automatically');
+    if (manual) toast('Check failed', err.message || 'Network error.', 'err');
+    return;
+  }
+  if (result.status === 'paid') {
+    await completePaidOrder(result.raw);
+    return;
+  }
+  if (result.status === 'expired') {
+    PAY.status = 'expired';
+    stopPolling(); stopCountdown();
+    db.ref('orders/' + PAY.orderId).update({paymentStatus: 'expired', orderStatus: 'expired', expiredAt: Date.now()}).catch(() => {});
+    showPayErrorState('Payment expired', 'The gateway marked this payment session as expired. Your card/UPI account was not charged for this order.', 'Start a new payment to retry.');
+    setPayStatus('expired', 'Expired');
+    return;
+  }
+  if (result.status === 'failed') {
+    PAY.status = 'failed';
+    stopPolling(); stopCountdown();
+    db.ref('orders/' + PAY.orderId).update({paymentStatus: 'failed', orderStatus: 'failed', failedAt: Date.now()}).catch(() => {});
+    showPayErrorState('Payment failed', 'The gateway reported this payment as failed. No files were unlocked.', 'You can safely retry with a new UPI transaction.');
+    setPayStatus('failed', 'Failed');
+    return;
+  }
+  setVerifyFlag(true, 'Status: pending · last checked ' + new Date().toLocaleTimeString('en-IN'));
+  if (manual) toast('Still pending', 'We have not received the payment yet. Pay the exact amount and keep this open.', 'info', 4200);
+}
+
+/* ---------- paid / fulfillment ---------- */
+async function completePaidOrder(raw){
+  if (!PAY) return;
+  const cfg = gatewayConfig();
+  PAY.status = 'paid';
+  stopPolling(); stopCountdown();
+  setPayStatus('paid', 'Payment verified');
+  setVerifyFlag(true, 'Payment confirmed by gateway');
+  $('#payStepPill').textContent = 'Verified';
+
+  // ---- verification gates (never unlock on a mere client signal) ----
+  const gatewayOk = raw && (raw.ok === true || raw.success === true || normalizeStatus(raw) === 'paid');
+  const amt = Number(pickFirst(raw, ['amount', 'paid_amount', 'total', 'total_amount']));
+  const amountOk = !isFinite(amt) || amt <= 0 ? true : Math.abs(amt - PAY.amount) < 0.01;
+  if (!gatewayOk || !amountOk) {
+    PAY.status = 'failed';
+    showPayErrorState('Verification failed', !gatewayOk ? 'The gateway response could not be verified. Your order stays locked.' : 'Paid amount (' + money(amt) + ') does not match the order amount (' + money(PAY.amount) + '). Contact support with your order ID.', 'Order ' + PAY.orderId + ' remains locked for safety.');
+    setPayStatus('failed', 'Verification failed');
+    return;
+  }
+  const utr = String(pickFirst(raw, ['utr', 'rrn', 'transaction_id', 'txn_id', 'payment_id', 'bank_ref']) || PAY.providerOrderId);
+  const paidAtRaw = pickFirst(raw, ['paid_at', 'paidAt', 'completed_at', 'timestamp']);
+  let paidAt = paidAtRaw ? (typeof paidAtRaw === 'number' ? paidAtRaw : Date.parse(paidAtRaw)) : Date.now();
+  if (!isFinite(paidAt) || paidAt <= 0) paidAt = Date.now();
+  if (paidAt < 1e12) paidAt = paidAt * 1000;
+
+  const existing = state.orders[PAY.orderId] || {};
+  if (existing && existing.downloadUnlocked === true && existing.paymentStatus === 'paid') {
+    // idempotent — already fulfilled
+    showSuccessUI(utr, paidAt);
+    return;
+  }
+  try {
+    const updates = {
+      paymentStatus: 'paid', orderStatus: 'completed', transactionId: utr,
+      paidAt: paidAt, downloadUnlocked: true, paymentMethod: 'UPI',
+      gatewayVerifiedAt: Date.now(), gatewayStatus: 'completed'
+    };
+    await db.ref('orders/' + PAY.orderId).update(updates);
+    state.orders[PAY.orderId] = Object.assign({}, existing, updates);
+    // transaction log (idempotent by transaction id)
+    await db.ref('transactions/' + (utr || PAY.orderId)).set({
+      transactionId: utr || PAY.orderId, orderId: PAY.orderId, providerOrderId: PAY.providerOrderId,
+      amount: PAY.amount, status: 'completed', provider: 'payzapi',
+      createdAt: Number(existing.createdAt || Date.now()), verifiedAt: Date.now(), utr: utr || ''
+    }).catch(() => {});
+    // counters
+    db.ref('stats/' + PAY.productId + '/sold').transaction(v => (Number(v) || 0) + 1).catch(() => {});
+    db.ref('settings/deliveriesCount').transaction(v => (Number(v) || 0) + 1).catch(() => {});
+  } catch (e) {
+    console.warn('order fulfilment write failed', e);
+    toast('Sync issue', 'Payment is verified but saving the order failed. Retry or contact support with order ' + PAY.orderId + '.', 'warn', 8000);
+  }
+  showSuccessUI(utr, paidAt);
+}
+function showSuccessUI(utr, paidAt){
+  $('#payBodyNormal').classList.add('hidden');
+  $('#payBodyError').classList.add('hidden');
+  $('#payBodySuccess').classList.remove('hidden');
+  $('#payStepPill').textContent = 'Completed';
+  $('#payTitle').textContent = 'Payment successful';
+  const p = PAY.product;
+  $('#successReceipt').innerHTML =
+    '<div class="rk"><span>Product</span><b>' + esc(p.name) + '</b></div>' +
+    '<div class="rk"><span>Order ID</span><b class="mono">' + esc(PAY.orderId) + '</b></div>' +
+    '<div class="rk"><span>Amount paid</span><b>' + money(PAY.amount) + '</b></div>' +
+    '<div class="rk"><span>Transaction / UTR</span><b class="mono">' + esc(utr || '—') + '</b></div>' +
+    '<div class="rk"><span>Date</span><b>' + fmtDate(paidAt) + '</b></div>';
+  const dl = $('#btnSuccessDownload');
+  dl.href = safeUrl(p.downloadUrl) || '#';
+  dl.onclick = ev => {
+    if (!safeUrl(p.downloadUrl)) { ev.preventDefault(); toast('Download unavailable', 'The seller has not attached a file to this product yet. Contact support.', 'warn', 6000); return; }
+    toast('Download starting', 'Your files are being downloaded.', 'ok');
+  };
+  toast('Payment verified', 'Your product is unlocked and available in My purchases.', 'ok', 6000);
+  renderPurchases();
+}
+
+/* ---------- error state ---------- */
+function showPayErrorState(title, sub, help){
+  $('#payBodyNormal').classList.add('hidden');
+  $('#payBodySuccess').classList.add('hidden');
+  $('#payBodyError').classList.remove('hidden');
+  $('#payTitle').textContent = 'Checkout';
+  $('#errTitle').textContent = title;
+  $('#errSub').textContent = sub;
+  $('#errHelp').textContent = help || 'Order ' + (PAY ? PAY.orderId : '') + ' · support: ' + (state.settings.supportEmail || 'contact the store');
+  $('#payStepPill').textContent = title;
+  if (PAY) {
+    $('#errReceipt').innerHTML =
+      '<div class="rk"><span>Product</span><b>' + esc(PAY.product.name) + '</b></div>' +
+      '<div class="rk"><span>Order ID</span><b class="mono">' + esc(PAY.orderId) + '</b></div>' +
+      '<div class="rk"><span>Amount</span><b>' + money(PAY.amount) + '</b></div>';
+  }
+}
+function tryClosePay(){
+  if (!PAY) { closeOverlay('payOverlay'); return; }
+  if (PAY.status === 'paid') { closeOverlay('payOverlay'); PAY = null; return; }
+  if (PAY.status === 'pending') {
+    if (!confirm('Payment is still pending. Close checkout? You can resume it from My purchases.')) return;
+    stopPolling(); stopCountdown();
+  }
+  closeOverlay('payOverlay');
+  PAY = null;
+}
+function resumeOrder(order){
+  if (!order || !order.gateway || !order.gateway.providerOrderId) { toast('Cannot resume', 'This order has no gateway reference. Start a new payment.', 'warn'); return; }
+  const p = findProduct(order.productId) || { id: order.productId, name: order.productName, image: order.productImage, price: order.amount, downloadUrl: (state.products[order.productId] || {}).downloadUrl || '' };
+  PAY = {
+    orderId: order.orderId, productId: order.productId, product: p, amount: Number(order.amount),
+    status: order.paymentStatus === 'paid' ? 'paid' : 'pending',
+    providerOrderId: order.gateway.providerOrderId, qrImageUrl: order.gateway.qrImageUrl || '',
+    paymentUrl: order.gateway.paymentUrl || '', upiLink: order.gateway.upiLink || '', qrData: order.gateway.qrData || '',
+    expiresAt: Number(order.gateway.expiresAt || order.createdAt + UPI_TTL_MS)
+  };
+  renderPayModal();
+  openOverlay('payOverlay');
+  if (PAY.status === 'paid') { showSuccessUI(order.transactionId || order.gateway.providerOrderId, order.paidAt || Date.now()); return; }
+  paintPaySession();
+  startPolling(); startCountdown();
+}
+
+/* ================================================================
+   MY PURCHASES
+   ================================================================ */
+function myOrders(){
+  return Object.values(state.orders)
+    .filter(o => o && o.deviceId === IDENTITY.id)
+    .sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+}
+function purchaseHTML(o){
+  const paid = o.paymentStatus === 'paid' && o.downloadUnlocked === true;
+  const p = findProduct(o.productId);
+  const canDownload = paid && p && safeUrl(p.downloadUrl);
+  const statusLabel = paid ? 'Paid' : o.paymentStatus === 'pending' ? 'Pending' : o.paymentStatus === 'expired' ? 'Expired' : (o.paymentStatus || 'unknown');
+  return '<div class="purchase">' +
+    '<div class="pthumb">' + (isEmbeddableImage(o.productImage) ? '<img src="' + esc(o.productImage) + '" alt="" onerror="this.remove()" />' : graceIcon()) + '</div>' +
+    '<div class="pmain">' +
+      '<div class="ptitle">' + esc(o.productName || 'Product') + '</div>' +
+      '<div class="porder">' + esc(o.orderId) + ' · ' + money(o.amount) + '</div>' +
+      '<div class="prow">' +
+        '<span class="status-chip ' + esc(paid ? 'paid' : (o.paymentStatus || 'pending')) + '">' + esc(statusLabel) + '</span>' +
+        '<span class="pdate">' + fmtDate(o.paidAt || o.createdAt) + '</span>' +
+      '</div>' +
+      '<div style="display:flex;gap:7px;margin-top:9px;flex-wrap:wrap">' +
+        (paid ? '<a class="dl-btn' + (canDownload ? '' : ' locked') + '" href="' + (canDownload ? esc(safeUrl(p.downloadUrl)) : '#') + '" target="_blank" rel="noopener" data-dl-order="' + esc(o.orderId) + '">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg>' + (canDownload ? 'Download' : 'File pending') + '</a>'
+          : (o.paymentStatus === 'pending' ? '<button class="dl-btn" style="background:var(--panel);border:1px solid var(--string,var(--stroke));box-shadow:none" data-resume="' + esc(o.orderId) + '">Resume payment</button>' : '<button class="dl-btn" style="background:var(--panel);border:1px solid var(--stroke);box-shadow:none" data-resume="' + esc(o.orderId) + '">View / retry</button>')) +
+        '<button class="dl-btn" style="background:transparent;border:1px solid var(--stroke);color:var(--muted);box-shadow:none" data-copy="' + esc(o.orderId) + '">Copy order ID</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+function renderPurchases(){
+  const list = $('#purchasesList');
+  const mine = myOrders();
+  const paid = mine.filter(o => o.paymentStatus === 'paid');
+  $('#purchCount').textContent = paid.length;
+  $('#purchCount').classList.toggle('hidden', paid.length === 0);
+  if (!mine.length) {
+    list.innerHTML = '<div class="empty" style="padding:40px 18px"><div class="eicon">' + icons.cart + '</div><h3 style="font-size:1.02rem">No purchases yet</h3><p style="font-size:.82rem">Products you buy will appear here, tied to this browser. Use a recovery code if you switch devices.</p><button class="btn btn-primary btn-sm" id="btnBrowseFromPurchases">Browse the vault</button></div>';
+    const b = $('#btnBrowseFromPurchases'); if (b) b.onclick = () => { closeDrawer(); document.getElementById('store').scrollIntoView({behavior: 'smooth'}); };
+    return;
+  }
+  list.innerHTML = mine.map(purchaseHTML).join('');
+}
+
+/* recovery */
+async function recoverOrder(input){
+  const key = String(input || '').trim();
+  const msg = $('#recoverMsg');
+  const show = (t, ok) => { msg.style.display = 'block'; msg.style.color = ok ? 'var(--ok)' : 'var(--bad)'; msg.textContent = t; };
+  if (!key) { show('Enter an Order ID first.', false); return; }
+  const btn = $('#recoverBtn'); btn.classList.add('is-loading');
+  try {
+    let found = null, ref = null;
+    // direct key lookup
+    const snap = await db.ref('orders/' + key).once('value');
+    if (snap.exists()) { found = snap.val(); ref = 'orders/' + key; }
+    // search by provider order id / client id
+    if (!found && /^ord_/i.test(key)) {
+      const q = await db.ref('orders').orderByChild('gateway/providerOrderId').equalTo(key).once('value');
+      if (q.exists()) { const k = Object.keys(q.val())[0]; found = q.val()[k]; ref = 'orders/' + k; }
+    }
+    if (!found) { show('No order found with that ID. Check the ID from your receipt and try again.', false); return; }
+    if (found.deviceId === IDENTITY.id) { show('This order is already linked to this device. Scroll up to see it.', true); renderPurchases(); return; }
+    if (found.paymentStatus !== 'paid' || found.downloadUnlocked !== true) {
+      show('That order has not been paid yet. Complete payment first, then recover.', false);
+      return;
+    }
+    // Re-verify with gateway before transferring ownership
+    if (found.gateway && found.gateway.providerOrderId) {
+      try {
+        const data = await fetchGateway('check', {order_id: found.gateway.providerOrderId});
+        if (normalizeStatus(data) !== 'paid') { show('The gateway does not confirm this payment as paid. Recovery blocked.', false); return; }
+      } catch (e) {
+        show('Could not verify this order with the gateway right now. Try again shortly.', false);
+        return;
+      }
+    }
+    await db.ref(ref).update({deviceId: IDENTITY.id, recoveredAt: Date.now(), previousDeviceId: found.deviceId || ''});
+    state.orders[found.orderId || key] = Object.assign({}, found, {deviceId: IDENTITY.id});
+    show('Purchase recovered and linked to this device ✓', true);
+    toast('Purchase recovered', found.productName + ' is now in My purchases.', 'ok');
+    renderPurchases();
+  } catch (e) {
+    show('Recovery failed: ' + e.message, false);
+  } finally { btn.classList.remove('is-loading'); }
+}
+
+/* ================================================================
+   INFO MODAL
+   ================================================================ */
+function openInfo(kind){
+  const s = state.settings || {};
+  const store = s.storeName || 'VAULTLY';
+  const content = {
+    how: ['How it works', '<ol style="padding-left:20px;line-height:2;color:var(--muted);font-size:.9rem"><li>Pick a product and tap <b>Buy now</b>.</li><li>An order is created and a UPI QR is generated by PayZapi.</li><li>Pay the exact amount from any UPI app (GPay, PhonePe, Paytm, BHIM…).</li><li>Keep the checkout open — the status is verified automatically every 3 seconds.</li><li>Once the gateway confirms payment, your download unlocks instantly and stays in <b>My purchases</b>.</li></ol>'],
+    refunds: ['Refund policy', '<p style="color:var(--muted);font-size:.9rem;line-height:1.9">' + esc(s.refundPolicy || 'Digital files are delivered instantly and are non-refundable once downloaded. If a payment was verified but your file cannot be delivered, contact support with your Order ID and we will resolve it or refund you in full.') + '</p>'],
+    terms: ['Terms of use', '<p style="color:var(--muted);font-size:.9rem;line-height:1.9">' + esc(s.terms || 'All products are digital items licensed for personal use unless stated otherwise. Redistribution or resale of purchased files is prohibited. Purchases are tied to an anonymous device ID — keep your Order ID safe, as clearing browser data or switching devices may require using purchase recovery.') + '</p>']
+  }[kind];
+  if (!content) return;
+  $('#infoBody').innerHTML = '<span class="eyebrow">' + esc(store) + '</span><h2 style="font-size:1.4rem;margin:12px 0 14px">' + esc(content[0]) + '</h2>' + content[1];
+  openOverlay('infoOverlay');
+}
+
+/* ================================================================
+   EVENT WIRING
+   ================================================================ */
+function attachUIEvents(){
+  // product cards (event delegation)
+  document.addEventListener('click', ev => {
+    const card = ev.target.closest('.pcard');
+    if (card) { openProduct(card.dataset.pid); return; }
+    const openP = ev.target.closest('[data-open-product]');
+    if (openP) { openProduct(openP.dataset.openProduct); return; }
+    const buy = ev.target.closest('[data-buy]');
+    if (buy) { startCheckout(buy.dataset.buy); return; }
+    const closeBtn = ev.target.closest('[data-close]');
+    if (closeBtn) { closeOverlay(closeBtn.dataset.close); return; }
+    const copy = ev.target.closest('[data-copy]');
+    if (copy) { copyText(copy.dataset.copy); return; }
+    const resume = ev.target.closest('[data-resume]');
+    if (resume) { const o = state.orders[resume.dataset.resume]; if (o) { closeDrawer(); resumeOrder(o); } return; }
+    const dl = ev.target.closest('[data-dl-order]');
+    if (dl) {
+      const o = state.orders[dl.dataset.dlOrder];
+      const p = o ? findProduct(o.productId) : null;
+      if (!o || o.paymentStatus !== 'paid' || o.downloadUnlocked !== true) { ev.preventDefault(); toast('Locked', 'This download is not unlocked.', 'warn'); return; }
+      if (!p || !safeUrl((p && p.downloadUrl) || (o && o.downloadUrl))) { ev.preventDefault(); toast('File unavailable', 'The seller has not attached the file yet. Contact support.', 'warn'); return; }
+      toast('Download starting', 'Keep your order ID for future access.', 'ok');
+      return;
+    }
+    const clear = ev.target.closest('[data-clear-filters]');
+    if (clear) { state.ui.q = ''; state.ui.category = 'All'; $('#searchInputTop').value = ''; $('#searchInputMobile').value = ''; renderCatalog(); return; }
+    const chip = ev.target.closest('.chip[data-cat]');
+    if (chip) { state.ui.category = chip.dataset.cat; renderCatalog(); return; }
+    const infoLink = ev.target.closest('[data-info]');
+    if (infoLink) { ev.preventDefault(); openInfo(infoLink.dataset.info); return; }
+    if (ev.target.closest('[data-close-pay]')) { tryClosePay(); return; }
+    const payOverlay = ev.target.closest('#payOverlay');
+    if (payOverlay && ev.target === payOverlay) { tryClosePay(); return; }
+    const pOverlay = ev.target.closest('#productOverlay');
+    if (pOverlay && ev.target === pOverlay) { closeOverlay('productOverlay'); return; }
+    const iOverlay = ev.target.closest('#infoOverlay');
+    if (iOverlay && ev.target === iOverlay) { closeOverlay('infoOverlay'); return; }
+    if (ev.target.closest('[data-close-drawer]')) { closeDrawer(); return; }
+    const menuClose = ev.target.closest('[data-close-menu]');
+    if (menuClose) { $('#mobileMenu').classList.remove('open'); return; }
+  });
+  document.addEventListener('keydown', ev => {
+    if (ev.key !== 'Enter' && ev.key !== ' ') return;
+    const card = ev.target.closest && ev.target.closest('.pcard');
+    if (card && ev.target === card) { ev.preventDefault(); openProduct(card.dataset.pid); }
+  });
+
+  // search
+  const onSearch = debounce(v => { state.ui.q = v; renderCatalog(); }, 140);
+  ['searchInputTop', 'searchInputMobile'].forEach(id => {
+    const el = $('#' + id);
+    if (el) el.addEventListener('input', e => { onSearch(e.target.value); });
+  });
+  $('#sortSelect').addEventListener('change', e => { state.ui.sort = e.target.value; renderCatalog(); });
+
+  // header buttons
+  $('#btnPurchases').onclick = () => { openDrawer(); };
+  $('#mmPurchases').onclick = ev => { ev.preventDefault(); openDrawer(); };
+  $('#footPurchases').onclick = ev => { ev.preventDefault(); openDrawer(); };
+  $('#btnBurger').onclick = () => $('#mobileMenu').classList.add('open');
+  $('#btnHowItWorks').onclick = () => openInfo('how');
+  $('#btnRecoverSupport').onclick = () => openDrawer();
+  $('#recoverForm').addEventListener('submit', e => { e.preventDefault(); recoverOrder($('#recoverInput').value); });
+
+  // payment controls
+  $('#btnCheckPayment').onclick = () => { if (!pollBusy) checkPayment(true); };
+  $('#btnUpiApp').onclick = openUpiApp;
+  $('#btnRetryPayment').onclick = retryPayment;
+  $('#btnErrCheck').onclick = () => checkPayment(true);
+  $('#btnErrClose').onclick = tryClosePay;
+  $('#btnSuccessPurchases').onclick = () => { closeOverlay('payOverlay'); openDrawer(); };
+  $('#btnSuccessClose').onclick = () => { closeOverlay('payOverlay'); PAY = null; };
+
+  // own-orders live listener
+  if (IDENTITY.id) {
+    // Realtime listener; filtered client-side by deviceId so it works with public
+    // rules that have no .indexOn configured (a plain read is required anyway).
+    db.ref('orders').on('value', snap => {
+      const val = snap.val() || {};
+      state.orders = {};
+      Object.values(val).forEach(o => { if (o && o.orderId && o.deviceId === IDENTITY.id) state.orders[o.orderId] = o; });
+      renderPurchases();
+    }, err => console.warn('orders listener', err.message));
+  }
+  // resume from URL (?order=)
+  const urlOrder = new URLSearchParams(location.search).get('order');
+  if (urlOrder) setTimeout(() => { db.ref('orders/' + urlOrder).once('value').then(s => { if (s.exists()) { const o = s.val(); if (o.deviceId === IDENTITY.id) resumeOrder(o); } }).catch(() => {}); }, 1200);
+}
+function debounce(fn, ms){ let t; return function(){ const a = arguments, c = this; clearTimeout(t); t = setTimeout(() => fn.apply(c, a), ms); }; }
+function openDrawer(){
+  renderPurchases();
+  $('#purchasesDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openUpiApp(){
+  if (!PAY) return;
+  const link = PAY.upiLink || '';
+  if (link) {
+    try {
+      const ua = navigator.userAgent || '';
+      const isMobile = /android|iphone|ipad|ipod|mobile/i.test(ua);
+      if (isMobile) {
+        window.location.href = link;
+        toast('Opening UPI app', 'Choose GPay, PhonePe, Paytm, BHIM or any UPI app. Return here after paying — status verifies automatically.', 'info', 6000);
+      } else {
+        toast('Scan the QR instead', 'UPI app deep links work on phones. On desktop, scan the QR or use the hosted checkout page.', 'warn', 6000);
+      }
+      return;
+    } catch (e) {}
+  }
+  if (PAY.paymentUrl) { window.open(PAY.paymentUrl, '_blank', 'noopener'); toast('Opening checkout', 'Complete the payment in the new tab. This window keeps verifying status.', 'info'); return; }
+  toast('UPI link unavailable', 'The gateway did not return a UPI deep link. Scan the QR code instead.', 'warn', 6000);
+}
+function retryPayment(){
+  if (!PAY) return;
+  const pid = PAY.productId;
+  if (PAY.orderId) {
+    db.ref('orders/' + PAY.orderId).update({orderStatus: 'cancelled', paymentStatus: 'expired', cancelledAt: Date.now()}).catch(() => {});
+  }
+  stopPolling(); stopCountdown();
+  const old = PAY;
+  PAY = null;
+  startCheckout(pid, {forceNew: true});
+  toast('New payment started', 'A fresh payment session was created.', 'info');
+}
+
+/* ================================================================
+   BOOT & FIREBASE LISTENERS
+   ================================================================ */
+function boot(){
+  attachUIEvents();
+  applySettingsToUI();
+
+  db.ref('settings').on('value', s => {
+    state.settings = s.val() || {};
+    applySettingsToUI();
+    if (state.settings.categories && typeof state.settings.categories === 'object') state.categories = state.settings.categories;
+  }, err => console.warn('settings', err.message));
+
+  db.ref('products').on('value', snap => {
+    const val = snap.val() || {};
+    state.products = {};
+    Object.keys(val).forEach(id => { state.products[id] = normalizeProduct(val[id], id); });
+    productsReady = true;
+    renderCatalog(); renderTrending(); renderNewArrivals(); renderHeroCards();
+  }, err => {
+    productsReady = true;
+    $('#productGrid').innerHTML = emptyState(icons.wifi, 'Could not load products', 'Firebase connection failed. Check the database rules and your connection.', '<button class="btn btn-ghost btn-sm" onclick="location.reload()">Retry</button>');
+    console.warn('products', err.message);
+  });
+
+  db.ref('stats').on('value', s => { state.stats = s.val() || {}; renderCatalog(); renderTrending(); },
+    () => {});
+  db.ref('categories').once('value').then(s => { if (s.exists()) { state.categories = s.val() || {}; renderChips(); } }).catch(() => {});
+
+  touchDevice();
+  setInterval(touchDevice, 5 * 60 * 1000);
+}
+window.addEventListener('DOMContentLoaded', boot);
+
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5dd386b6bea5df1',t:'MTc5NTIzODE2Ng=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5dd386b6bea5df1',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
